@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/dashboard.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/themsanpham.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/trangchu.jsp=UTF-8
+encoding//src/liemnguyen/controller/ApiController.java=UTF-8
+encoding//src/liemnguyen/controller/DashboardThemSanPhamController.java=UTF-8
+encoding//src/liemnguyen/controller/GioHangController.java=UTF-8
+encoding//src/liemnguyen/controller/TrangChuController.java=UTF-8
+encoding//src/liemnguyen/dao/DonHangDAO.java=UTF-8
+encoding//src/liemnguyen/dao/UserDAO.java=UTF-8
+encoding//src/liemnguyen/entity/SanPham.java=UTF-8
+encoding/<project>=UTF-8
