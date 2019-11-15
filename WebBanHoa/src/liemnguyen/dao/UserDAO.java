@@ -1,5 +1,7 @@
 package liemnguyen.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -10,7 +12,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Repository;
 
+import liemnguyen.controller.TrangChuController;
 import liemnguyen.daoimp.UserImp;
+import liemnguyen.entity.SanPham;
 import liemnguyen.entity.User;
 
 @Repository
@@ -103,5 +107,35 @@ public class UserDAO implements UserImp {
 		}
 		return -1;
 	}
+
+	@Override
+	public List<User> layDanhSachSanPhamLimit(int start) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "from User";
+		Query query =  session.createQuery(hql);
+		if(start>=0){
+			query.setFirstResult(start);
+			query.setMaxResults(TrangChuController.LIMIT_SP);
+		}
+		List<User> listUser = query.list();
+		return listUser;
+	}
+
+	@Override
+	public User layUser(String idUser) {
+		// TODO Auto-generated method stub
+		User user = new User();
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			String hql = "from User where tenDangNhap='"+idUser+"'";
+			Query query = session.createQuery(hql);
+			user = (User) query.uniqueResult();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return user;
+	}
+
 
 }

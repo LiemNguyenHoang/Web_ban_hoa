@@ -25,6 +25,9 @@ import liemnguyen.service.SanPhamService;
 
 @Controller
 public class DashboardCapNhatSanPhamController {
+
+	int indexCurrent = 1;
+	
 	@Autowired
 	LoaiSanPhamService loaiSanPhamService;
 
@@ -63,6 +66,7 @@ public class DashboardCapNhatSanPhamController {
 		}
 		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", index);
+		indexCurrent = Integer.parseInt(index);
 		
 		List<SanPham> listSanPham = sanPhamService.layDanhSachSanPhamLimit((Integer.parseInt(index)-1)*5);
 		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
@@ -72,8 +76,6 @@ public class DashboardCapNhatSanPhamController {
 		model.addAttribute("tongpage", page);
 
 		model.addAttribute("danhmucsp", listLoaiSanPham);
-		
-		System.out.println("index: "+index);
 
 		return "dashboard_capnhatsanpham";
 	}
@@ -85,7 +87,9 @@ public class DashboardCapNhatSanPhamController {
 			model.addAttribute("user", user);
 		}
 
-		List<SanPham> listSanPham = sanPhamService.layDanhSachSanPhamLimit(0);
+		model.addAttribute("indexs", indexCurrent);
+		
+		List<SanPham> listSanPham = sanPhamService.layDanhSachSanPhamLimit((indexCurrent-1)*5);
 		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
 		model.addAttribute("listSanPham", listSanPham);
 
