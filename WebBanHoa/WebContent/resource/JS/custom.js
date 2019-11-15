@@ -184,25 +184,25 @@ $(document).ready(
 						});
 					});
 
-			$("body").on("click", ".paging-item", function() {
-				$(".paging-item").removeClass("active");
-				$(this).addClass("active");
-				var index = $(this).text();
-				var startSP = (index - 1) * 5;
-				$.ajax({
-					url : "/WebBanHoa/api/LaySanPhamLimit.htm",
-					type : "GET",
-					data : {
-						spbatdau : startSP
-					},
-
-					success : function(value) {
-						var tbodysanpham = $("#table-sanpham").find("tbody");
-						tbodysanpham.empty();
-						tbodysanpham.append(value);
-					}
-				});
-			});
+//			$("body").on("click", ".paging-item", function() {
+//				$(".paging-item").removeClass("active");
+//				$(this).addClass("active");
+//				var index = $(this).text();
+//				var startSP = (index - 1) * 5;
+//				$.ajax({
+//					url : "/WebBanHoa/api/LaySanPhamLimit.htm",
+//					type : "GET",
+//					data : {
+//						spbatdau : startSP
+//					},
+//
+//					success : function(value) {
+//						var tbodysanpham = $("#table-sanpham").find("tbody");
+//						tbodysanpham.empty();
+//						tbodysanpham.append(value);
+//					}
+//				});
+//			});
 
 			$("#checkall").change(function() {
 				if (this.checked) {

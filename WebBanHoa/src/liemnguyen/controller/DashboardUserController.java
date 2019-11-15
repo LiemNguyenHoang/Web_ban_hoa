@@ -12,10 +12,16 @@ public class DashboardUserController {
 
 	@RequestMapping(value="dashboarduser",method=RequestMethod.GET)
 	public String index(Model model,HttpSession httpSession){
-		if(httpSession.getAttribute("user_name")!=null){
-			String user = (String) httpSession.getAttribute("user_name");
-			model.addAttribute("user",user);
-		}
+//		if(httpSession.getAttribute("user_name")!=null){
+//			String user = (String) httpSession.getAttribute("user_name");
+//			model.addAttribute("user",user);
+//		}
+		
+		// Start: 
+
+		model.addAttribute("user","sa");
+		
+		// End
 		return "dashboard_user";
 	}
 	

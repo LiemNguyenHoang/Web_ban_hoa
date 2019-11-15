@@ -43,7 +43,7 @@
 			<ul id="navbar-right" class="navbar-nav mr-auto navbar-center">
 				<c:choose>
 					<c:when test="${user != null}">
-						<li class="nav-item" ><a class="nav-link" href="dangnhap.htm" style="margin-top:-2px !important">${user}</a></li>
+						<li class="nav-item" ><a class="nav-link" href="dashboard.htm" style="margin-top:-2px !important">${user}</a></li>
 						<li class="nav-item"><a class="nav-link" href="dangxuat.htm">ĐĂNG XUẤT</a></li>
 						
 					</c:when>

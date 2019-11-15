@@ -40,7 +40,9 @@ public class DashboardCapNhatSanPhamController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-
+		model.addAttribute("user", "sa");
+		model.addAttribute("indexs", 1);
+		
 		List<SanPham> listSanPham = sanPhamService.layDanhSachSanPhamLimit(0);
 		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
 		model.addAttribute("listSanPham", listSanPham);
@@ -49,6 +51,29 @@ public class DashboardCapNhatSanPhamController {
 		model.addAttribute("tongpage", page);
 
 		model.addAttribute("danhmucsp", listLoaiSanPham);
+
+		return "dashboard_capnhatsanpham";
+	}
+	
+	@RequestMapping(value = "dashboardcapnhatsanpham", method = RequestMethod.GET,params="index-paging")
+	public String index(Model model, HttpSession httpSession,@RequestParam("index-paging")String index) {
+		if (httpSession.getAttribute("user_name") != null) {
+			String user = (String) httpSession.getAttribute("user_name");
+			model.addAttribute("user", user);
+		}
+		model.addAttribute("user", "asd");
+		model.addAttribute("indexs", index);
+		
+		List<SanPham> listSanPham = sanPhamService.layDanhSachSanPhamLimit((Integer.parseInt(index)-1)*5);
+		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
+		model.addAttribute("listSanPham", listSanPham);
+
+		int page = 5; // listSanPham/(số sp mỗi page)
+		model.addAttribute("tongpage", page);
+
+		model.addAttribute("danhmucsp", listLoaiSanPham);
+		
+		System.out.println("index: "+index);
 
 		return "dashboard_capnhatsanpham";
 	}
