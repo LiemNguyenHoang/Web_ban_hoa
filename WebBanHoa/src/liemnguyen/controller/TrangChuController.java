@@ -68,10 +68,10 @@ public class TrangChuController {
 		}else{
 			model.addAttribute("soluonggh",0);
 		}
-		List<SanPham> listSanPhams =  sanPhamService.layDanhSachSanPhamLimit(0);
+		List<SanPham> listSanPhams =  sanPhamService.layDanhSachSanPham(0);
 		model.addAttribute("listSanPham",listSanPhams);
 
-		
+		System.out.println(listSanPhams);
 		
 		return "trangchu";
 	}

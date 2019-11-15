@@ -42,7 +42,19 @@ public class SanPhamDAO implements SanPhamImp {
 		List<SanPham> listSanPhams = query.list();
 		return listSanPhams;
 	}
-
+	@Override
+	public List<SanPham> layDanhSachSanPham(int start) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "from SanPham";
+		Query query =  session.createQuery(hql);
+		if(start>=0){
+			query.setFirstResult(start);
+			query.setMaxResults(20);
+		}
+		List<SanPham> listSanPhams = query.list();
+		return listSanPhams;
+	}
 	@Override
 	public SanPham laySanPham(int idSanPham) {
 		// TODO Auto-generated method stub
@@ -91,6 +103,22 @@ public class SanPhamDAO implements SanPhamImp {
 			return false;
 		}
 	}
+	@Override
+	public boolean capNhatSanPham(SanPham sanPham) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction t =  session.beginTransaction();
+		try{
+			session.update(sanPham);
+			t.commit();
+			return true;
+		}catch(Exception e){
+			t.rollback();
+			return false;
+		}
+	}
+
+
 
 
 }

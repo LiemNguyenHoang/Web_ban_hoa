@@ -241,12 +241,12 @@ public class ApiController {
 
 		}
 //	@RequestMapping(value = "LaySanPhamTheoMa", method = RequestMethod.POST,produces="application/json; charset=utf-8")
-	@RequestMapping(value = "LaySanPhamTheoMa",produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "LaySanPhamTheoMa",method = RequestMethod.POST)
 	@ResponseBody
 	public String laySanPham(@RequestParam("idSanPham") int idSanPham) {
 
 		SanPham sanPham = sanPhamService.laySanPham(idSanPham);
-		System.out.println(sanPham.getTenSanPham());
+		
 		
 		String json ="";
 		json+="ten:"+sanPham.getTenSanPham();
@@ -266,10 +266,9 @@ public class ApiController {
 				System.out.println(e.getMessage());
 			}
 		
-		System.out.println(jsonajax);
 		// End
 		
-		return jsonajax;
+		return json;
 	}
 
 }

@@ -63,11 +63,6 @@ public class DashboardThemSanPhamController {
 						@RequestParam("motasanpham")String moTaSanPham,
 						@RequestParam("hinhanhsanpham")MultipartFile hinhAnhSanPham)  {
 		
-		 System.out.println("=====");
-		 System.out.println("ten: "+tenSanPham);
-		 System.out.println("loai: "+loaiSanPham);
-		 System.out.println("gia: "+giaSanPham);
-		 System.out.println("mota: "+moTaSanPham);
 		 if(hinhAnhSanPham.isEmpty()){
 			 System.out.println("Không có file");
 		 }else{

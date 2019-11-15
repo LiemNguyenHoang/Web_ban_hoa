@@ -68,8 +68,7 @@
 
 					<%-- <a href="chitiet/${sanpham.getIdSanPham()}.htm "> --%>
 					<div class="card">
-						<img src="<c:url value="/resource/image/sanpham/${sanpham.hinhAnh }"></c:url>"
-							class="card-img-top" alt="Card image">
+						<img src="<c:url value="/resource/image/sanpham/${sanpham.hinhAnh }"></c:url>" class="card-img-top" alt="Card image">
 						<div class="card-body">
 							<h5 class="card-title">${sanpham.tenSanPham }</h5>
 							<p class="card-text">${sanpham.gia }</p>

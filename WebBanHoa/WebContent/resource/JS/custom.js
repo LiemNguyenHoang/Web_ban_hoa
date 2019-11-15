@@ -275,19 +275,18 @@ $(document).ready(
 
 			});
 			
-			$("body").on("click",".capnhatsanpham",function(event){
-				masanpham = $(this).attr("data-id");
-				
-				$.ajax({
-					 cache: false,
-					url : "/WebBanHoa/api/LaySanPhamTheoMa.htm",
-					type : "GET",
-					data : {
-						idSanPham:masanpham 
-					},
-					success : function(value) {
-						value = encodeURIComponent(value)
-						alert(value.tenLoai)
+//			$("body").on("click",".capnhatsanpham",function(event){
+//				masanpham = $(this).attr("data-id");
+//				
+//				$.ajax({
+//					 cache: false,
+//					url : "/WebBanHoa/api/LaySanPhamTheoMa.htm",
+//					type : "POST",
+//					data : {
+//						idSanPham:masanpham 
+//					},
+//					success : function(value) {
+//						
 //						var arr1 = value.split(',');
 //						var arr2 = arr1[0].split(':');
 //						$("#tensanpham").val(arr2[1]);
@@ -302,8 +301,8 @@ $(document).ready(
 //						
 //						arr2 = arr1[3].split(':');
 //						$("#motasanpham").val(arr2[1]);
-					}
-				});
-			});
+//					}
+//				});
+//			});
 
 		})

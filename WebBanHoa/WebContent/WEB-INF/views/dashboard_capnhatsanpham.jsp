@@ -71,40 +71,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<div class="page-container">
 		<!--/content-inner-->
-		<div class="left-content">
+		<c:choose>
+			<c:when test="${user != null}">
+				<div class="left-content">
 			<div class="row" style="background: white !important">
 
-				<h3>Sản phẩm</h3>
-				<form id="form-sanpham" action="">
-					<div class="col-md-6 col-sm-12">
-						<label for="tensanpham">Tên sản phẩm</label> </br> 
-						<input type="text" name = "tensanpham" id="tensanpham" class="form-control"> 
-						
-						<label for="danhmucsanpham">Loại</label> </br> 
-						<select class="form-control" name="danhmucsanpham" id="danhmucsanpham">
-							<c:forEach var="valuedanhmucsp" items="${danhmucsp }">
-								<option value="${valuedanhmucsp.getId()}">${valuedanhmucsp.getTenLoai()}</option>
-							</c:forEach>
-						</select> 
-						
-						<label for="giasanpham">Giá</label> </br> 
-						<input type="text" name="giasanpham" id="giasanpham" class="form-control"> 
-						
-						<label for="motasanpham">Mô tả</label> </br>			
-						<textarea name="motasanpham" id="motasanpham" class="form-control" rows="3"></textarea>
-						
-						<label for="hinhanhsanpham">Hình ảnh</label> </br> 
-						<input type="file" name="hinhanhsanpham" id="hinhanhsanpham" class="form-control" value="not">
 				
 
-					</div>
-				</form>
-
 				<div class="col-md-6 col-sm-12">
-					<div style="float: right">
-						<div id="them-sanpham" class="btn btn-info">Thêm sản phẩm</div>
-						<div id="xoa-sanpham" class="btn btn-info">Xóa</div>
-					</div>
+					
+						
+					
+			
 					<table id="table-sanpham" class="table">
 						<thead>
 							<tr>
@@ -117,6 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<th>Tên sản phầm</th>
 								<th>Loại</th>
 								<th>Giá</th>
+								
 							</tr>
 						</thead>
 
@@ -130,14 +109,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</label>
 										</div>
 									</td>
-									<td>${sanpham.tenSanPham }</td>
+									<%-- <td><a class="capnhatsanpham" data-id="${sanpham.idSanPham }">${sanpham.tenSanPham }</a></td> --%>
+									<%-- <td><a class="capnhatsanpham" data-id="${sanpham.idSanPham }">${sanpham.tenSanPham }</a></td> --%>
+									<form action="dashboardcapnhatsanpham.htm" method="post">
+										
+										<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="idsanphamdashboard"  value="${sanpham.idSanPham }">${sanpham.tenSanPham }</button></td>
+									</form>
+									
 									<td>${sanpham.loaiSanPham.tenLoai }</td>
 									<td>${sanpham.gia }</td>
-									<td class=" btn btn-info capnhatsanpham" data-id="${sanpham.idSanPham }">Sửa</td>
+									<%-- <td class=" btn btn-info capnhatsanpham" data-id="${sanpham.idSanPham }">Sửa</td> --%>
 								</tr>
 							</c:forEach>
 						</tbody>
+						
 					</table>
+					<div id="xoa-sanpham" class="btn btn-danger">Xóa</div>	
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
 
@@ -156,8 +143,61 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 					</nav>
 				</div>
+				
+				<h3>Cập nhật sản phẩm</h3>
+				
+					<div class="col-md-6 col-sm-12">
+					<form id="form-sanpham" action="dashboardcapnhatsanphamthanhcong.htm" method="post" enctype="multipart/form-data">
+						<input style="display:none !important" type="text" name = "idsanpham" id="idsanpham" class="form-control" value="${idsanphamdashboard}"> 
+						
+						<label for="tensanpham">Tên sản phẩm</label> </br> 
+						<input type="text" name = "tensanpham" id="tensanpham" class="form-control" value="${tensanphamdashboard}"> 
+						
+						<label for="danhmucsanpham">Loại</label> </br> 
+						<select class="form-control" name="danhmucsanpham" id="danhmucsanpham">
+							<c:forEach var="valuedanhmucsp" items="${danhmucsp }" begin="0" end="6" varStatus="status">
+								<c:choose>
+									<c:when test="${loaisanphamdashboard == status.index }">
+										<option selected value="${valuedanhmucsp.getId()}">${valuedanhmucsp.getTenLoai()}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${valuedanhmucsp.getId()}">${valuedanhmucsp.getTenLoai()}</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</select> 
+						
+						
+						<label for="giasanpham">Giá</label> </br> 
+						<input type="text" name="giasanpham" id="giasanpham" class="form-control" value="${giasanphamdashboard}"> 
+						
+						<label for="motasanpham">Mô tả</label> </br>			
+						<textarea name="motasanpham" id="motasanpham" class="form-control" rows="3">${motasanphamdashboard}</textarea>
+						
+						<label for="hinhanhsanpham">Hình ảnh</label> </br> 
+						<input type="file" name="hinhanhsanpham" id="hinhanhsanpham" class="form-control" value="not">
+						<button class="btn btn-info">Cập nhật sản phẩm</button>
+
+				</form>
+					</div>
+				
 			</div>
 		</div>
+			</c:when>
+			<c:when test="${user == null}">
+				<div class="left-content">
+					<div>
+						<span>Không có User</span>
+					</div>
+				</div>
+			</c:when>
+		</c:choose>
+		
+		
+		
+		
+		
+		
 		<!--//content-inner-->
 		<!--/sidebar-menu-->
 		<div class="sidebar-menu">
@@ -167,66 +207,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</header>
 			<div style="border-top: 1px ridge rgba(255, 255, 255, 0.15)"></div>
 			<div class="menu">
-				<ul id="menu">
-					<li><a href="index.html"><i class="fa fa-tachometer"></i>
-							<span>Dashboard</span>
-							<div class="clearfix"></div></a></li>
-
-					<li id="menu-academico"><a href="inbox.html"><i
-							class="fa fa-envelope nav_icon"></i><span>Inbox</span>
-							<div class="clearfix"></div></a></li>
-					<li><a href="gallery.html"><i class="fa fa-picture-o"
-							aria-hidden="true"></i><span>Gallery</span>
-							<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="charts.html"><i
-							class="fa fa-bar-chart"></i><span>Charts</span>
-							<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="#"><i
-							class="fa fa-list-ul" aria-hidden="true"></i><span> Short
-								Codes</span> <span class="fa fa-angle-right" style="float: right"></span>
-							<div class="clearfix"></div></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="icons.html">Icons</a></li>
-							<li id="menu-academico-avaliacoes"><a href="typography.html">Typography</a></li>
-							<li id="menu-academico-avaliacoes"><a href="faq.html">Faq</a></li>
-						</ul></li>
-					<li id="menu-academico"><a href="errorpage.html"><i
-							class="fa fa-exclamation-triangle" aria-hidden="true"></i><span>Error
-								Page</span>
-							<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="#"><i class="fa fa-cogs"
-							aria-hidden="true"></i><span> UI Components</span> <span
-							class="fa fa-angle-right" style="float: right"></span>
-							<div class="clearfix"></div></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="button.html">Buttons</a></li>
-							<li id="menu-academico-avaliacoes"><a href="grid.html">Grids</a></li>
-						</ul></li>
-					<li><a href="tabels.html"><i class="fa fa-table"></i> <span>Tables</span>
-							<div class="clearfix"></div></a></li>
-					<li><a href="maps.html"><i class="fa fa-map-marker"
-							aria-hidden="true"></i> <span>Maps</span>
-							<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="#"><i
-							class="fa fa-file-text-o"></i> <span>Pages</span> <span
-							class="fa fa-angle-right" style="float: right"></span>
-							<div class="clearfix"></div></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-boletim"><a href="calendar.html">Calendar</a></li>
-							<li id="menu-academico-avaliacoes"><a href="signin.html">Sign
-									In</a></li>
-							<li id="menu-academico-avaliacoes"><a href="signup.html">Sign
-									Up</a></li>
-
-						</ul></li>
-					<li><a href="#"><i class="fa fa-check-square-o nav_icon"></i><span>Forms</span>
-							<span class="fa fa-angle-right" style="float: right"></span>
-							<div class="clearfix"></div></a>
-						<ul>
-							<li><a href="input.html"> Input</a></li>
-							<li><a href="validation.html">Validation</a></li>
-						</ul></li>
-				</ul>
+				 <ul id="menu">
+					<li id="menu-academico"><a href="home.htm"><i
+							class="fa fa-home"></i><span>Home</span>
+						<div class="clearfix"></div></a></li>
+                    <li id="menu-academico"><a href="dashboarddonhang.htm"><i class="fa fa-shopping-cart"></i><span>Đơn hàng</span><div class="clearfix"></div></a></li>
+                    <li id="menu-academico"><a ><i class="fa fa-list-ul" aria-hidden="true"></i><span>Sản phẩm</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+                        <ul id="menu-academico-sub">
+                            <li id="menu-academico-avaliacoes" ><a href="dashboardthemsanpham.htm">Thêm</a></li>
+                            <li id="menu-academico-avaliacoes"><a href="dashboardcapnhatsanpham.htm">Cập nhật</a></li>
+                        </ul>
+                    </li>
+                    <li id="menu-academico"><a href="dashboarduser.htm"><i class="fa fa-users" aria-hidden="true"></i><span>User</span><div class="clearfix"></div></a></li>
+                    <li><a href="dangxuat.htm"><i class="fa fa-sign-out"></i>  <span>Đăng xuất</span><div class="clearfix"></div></a></li>
+                </ul>
 			</div>
 		</div>
 		<div class="clearfix"></div>
