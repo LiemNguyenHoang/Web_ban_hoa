@@ -96,10 +96,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li id="menu-academico"><a href="home.htm"><i
 							class="fa fa-home"></i><span>Home</span>
 						<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="dashboarddonhang.htm"><i
+					<li id="menu-academico"><a href="usergiohang.htm"><i
 							class="fa fa-shopping-cart"></i><span>Giỏ hàng</span>
 						<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="dashboarduser.htm"><i
+					<li id="menu-academico"><a href="userdonhang.htm"><i
 							class="fa fa-list-alt" aria-hidden="true"></i><span>Đơn hàng</span>
 					<div class="clearfix"></div></a></li>
 					<li id="menu-academico"><a href="userthongtin.htm"><i

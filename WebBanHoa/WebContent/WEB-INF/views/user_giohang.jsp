@@ -70,29 +70,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<c:when test="${user != null}">
 				<div class="left-content">
 					<div>
-						<form id="form-sanpham" action="userthongtin.htm" method="post">
-					
-							<label for="tendangnhap">Tên đăng nhập</label> </br> 
-							<input type="text" name = "tendangnhap" id="tendangnhap" class="form-control" value="${tendangnhapuserdashboard}"> 
-							
-							<label for="matkhau">Mật khẩu</label> </br> 
-							<input type="text" name = "matkhau" id="matkhau" class="form-control" value="${matkhauuserdashboard}"> 
-							
-							<label for="nhaplaimatkhau">Nhập lại mật khẩu</label> </br> 
-							<input type="text" name = "nhaplaimatkhau" id="nhaplaimatkhau" class="form-control" value="${nhaplaimatkhauuserdashboard}"> 
-							
-							<label for="hoten">Họ tên</label> </br> 
-							<input type="text" name = "hoten" id="hoten" class="form-control" value="${hotenuserdashboard}"> 
-	
-							<label for="sodienthoai">Số điện thoại</label> </br> 
-							<input type="text" name="sodienthoai" id="sodienthoai" class="form-control" value="${sodienthoaiuserdashboard}"> 
-							
-							<label for="diachi">Địa chỉ</label> </br>			
-							<textarea name="diachi" id="diachi" class="form-control" rows="2">${diachiuserdashboard}</textarea>
-							
-							<button class="btn btn-info">Cập nhật</button>
-							
-						</form>
+						<table class="table">
+							<thead>
+								<tr>
+									<td><h5>Tên sản phẩm</h5></td>
+									<td><h5>Số lượng</h5></td>
+									<td><h5>Giá</h5></td>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="value" items="${listgiohang }">
+									<tr>
+										<td>${value.getTenSanPham() }</td>
+										<td>${value.getSoLuong()}</td>
+										<td>${value.getGia() }</td>
+										
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<a class="btn btn-info" href="giohang.htm">Thanh toán</a>
 					</div>
 				</div>
 			</c:when>

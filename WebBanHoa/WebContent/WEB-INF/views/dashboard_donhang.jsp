@@ -115,7 +115,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</form>
 									
 									<td>${donhang.ngayMua}</td>
-									<td>${donhang.tinhTrang }</td>
+									<c:choose>
+										<c:when test="${donhang.tinhTrang == false }">
+											<td><span>Chưa xử lý</span></td>
+										</c:when>
+										<c:otherwise>
+											<td><span>Đã xử lý</span></td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 						</tbody>

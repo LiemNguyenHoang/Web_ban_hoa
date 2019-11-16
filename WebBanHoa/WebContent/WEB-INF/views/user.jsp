@@ -66,44 +66,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<div class="page-container">
 		<!--/content-inner-->
-		<c:choose>
-			<c:when test="${user != null}">
-				<div class="left-content">
-					<div>
-						<form id="form-sanpham" action="userthongtin.htm" method="post">
-					
-							<label for="tendangnhap">Tên đăng nhập</label> </br> 
-							<input type="text" name = "tendangnhap" id="tendangnhap" class="form-control" value="${tendangnhapuserdashboard}"> 
-							
-							<label for="matkhau">Mật khẩu</label> </br> 
-							<input type="text" name = "matkhau" id="matkhau" class="form-control" value="${matkhauuserdashboard}"> 
-							
-							<label for="nhaplaimatkhau">Nhập lại mật khẩu</label> </br> 
-							<input type="text" name = "nhaplaimatkhau" id="nhaplaimatkhau" class="form-control" value="${nhaplaimatkhauuserdashboard}"> 
-							
-							<label for="hoten">Họ tên</label> </br> 
-							<input type="text" name = "hoten" id="hoten" class="form-control" value="${hotenuserdashboard}"> 
-	
-							<label for="sodienthoai">Số điện thoại</label> </br> 
-							<input type="text" name="sodienthoai" id="sodienthoai" class="form-control" value="${sodienthoaiuserdashboard}"> 
-							
-							<label for="diachi">Địa chỉ</label> </br>			
-							<textarea name="diachi" id="diachi" class="form-control" rows="2">${diachiuserdashboard}</textarea>
-							
-							<button class="btn btn-info">Cập nhật</button>
-							
-						</form>
-					</div>
-				</div>
-			</c:when>
-			<c:when test="${user == null}">
-				<div class="left-content">
-					<div>
-						<span>Không có User</span>
-					</div>
-				</div>
-			</c:when>
-		</c:choose>
+		
+		<span>${message }</span>
 
 		<!--//content-inner-->
 		<!--/sidebar-menu-->
@@ -118,10 +82,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li id="menu-academico"><a href="home.htm"><i
 							class="fa fa-home"></i><span>Home</span>
 						<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="usergiohang.htm"><i
+					<li id="menu-academico"><a href="dashboarddonhang.htm"><i
 							class="fa fa-shopping-cart"></i><span>Giỏ hàng</span>
 						<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="userdonhang.htm"><i
+					<li id="menu-academico"><a href="dashboarduser.htm"><i
 							class="fa fa-list-alt" aria-hidden="true"></i><span>Đơn hàng</span>
 					<div class="clearfix"></div></a></li>
 					<li id="menu-academico"><a href="userthongtin.htm"><i

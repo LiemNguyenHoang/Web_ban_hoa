@@ -74,19 +74,7 @@ public class GioHangController {
 			donHangService.themDonHang(gioHang,user);
 			User user2 = userService.layUser("hoang_ky");
 			List<DonHang> list = (List<DonHang>) user2.getDonHangns();
-			
-			
-			// System.out.println(
-			// "ten: "+tennguoimua+"\n"
-			// + "sdt: "+sodienthoai+"\n"
-			// + "diachi: "+diachi+"\n"
-			// + "ghichu: "+ghichu);
-			// System.out.println("=====");
-			// for(int i = 0;i<listGioHang.size();i++){
-			// System.out.println("id: "+listGioHang.get(i).getIdSanPham()+" SL:
-			// "+listGioHang.get(i).getSoLuong());
-			// }
-			// System.out.println("*****");
+
 		}
 
 		return "giohang";

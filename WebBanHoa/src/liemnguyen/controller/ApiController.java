@@ -60,6 +60,7 @@ public class ApiController {
 		int kiemTraDangNhap = userService.kiemTraDangNhap(tenDangNhap, matKhau);
 		if(kiemTraDangNhap==2 || kiemTraDangNhap==3){
 			modelMap.addAttribute("user_name", tenDangNhap);
+			modelMap.addAttribute("user_id", tenDangNhap);
 		}
 		return kiemTraDangNhap + "";
 	}

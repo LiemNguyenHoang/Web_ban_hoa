@@ -39,5 +39,11 @@ public class UserService implements UserImp{
 		return userDAO.layUser(idUser);
 	}
 
+	@Override
+	public boolean capNhatUser(User user) {
+		// TODO Auto-generated method stub
+		return userDAO.capNhatUser(user);
+	}
+
 	
 }

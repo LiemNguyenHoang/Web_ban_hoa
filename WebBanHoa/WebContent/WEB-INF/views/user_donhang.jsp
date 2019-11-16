@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -11,6 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
+<link rel="stylesheet" href="<c:url value="/resource/Styles/styles.css"></c:url>">
 <title>Pooled Admin Panel Category Flat Bootstrap Responsive Web
 	Template | Home :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,14 +35,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Bootstrap Core CSS -->
 
 <link
-	href="<c:url value="/resource/Admin Pooled/css/bootstrap.min.css"></c:url>"
-	rel='stylesheet' type='text/css' />
+	href="<c:url value="/resource/Admin Pooled/css/bootstrap.min.css"></c:url>" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
 
 <link
 	href="<c:url value="/resource/Admin Pooled/css/style.css"></c:url>"
 	rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="css/morris.css" type="text/css" />
+
+<link rel="stylesheet"
+	href="<c:url value="/resource/Admin Pooled/css/morris.css"></c:url>"
+	type="text/css" />
 <!-- Graph CSS -->
 
 <link
@@ -61,6 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	rel="<c:url value="/resource/Admin Pooled/css/icon-font.min.css"></c:url>"
 	type='text/css' />
 <!-- //lined-icons -->
+<meta charset="utf-8">
 </head>
 
 <body>
@@ -69,32 +74,146 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<c:choose>
 			<c:when test="${user != null}">
 				<div class="left-content">
-					<div>
-						<form id="form-sanpham" action="userthongtin.htm" method="post">
+			<div class="row" style="background: white !important">
+
+				
+
+				<div class="col-md-6 col-sm-12">
 					
-							<label for="tendangnhap">Tên đăng nhập</label> </br> 
-							<input type="text" name = "tendangnhap" id="tendangnhap" class="form-control" value="${tendangnhapuserdashboard}"> 
+						
+					
+			
+					<table id="table-donhang" class="table">
+						<thead>
+							<tr>
+								<th>Mã đơn hàng</th>
+								<th>Ngày mua</th>
+								<th>Tình trạng</th>
 							
-							<label for="matkhau">Mật khẩu</label> </br> 
-							<input type="text" name = "matkhau" id="matkhau" class="form-control" value="${matkhauuserdashboard}"> 
-							
-							<label for="nhaplaimatkhau">Nhập lại mật khẩu</label> </br> 
-							<input type="text" name = "nhaplaimatkhau" id="nhaplaimatkhau" class="form-control" value="${nhaplaimatkhauuserdashboard}"> 
-							
-							<label for="hoten">Họ tên</label> </br> 
-							<input type="text" name = "hoten" id="hoten" class="form-control" value="${hotenuserdashboard}"> 
-	
-							<label for="sodienthoai">Số điện thoại</label> </br> 
-							<input type="text" name="sodienthoai" id="sodienthoai" class="form-control" value="${sodienthoaiuserdashboard}"> 
-							
-							<label for="diachi">Địa chỉ</label> </br>			
-							<textarea name="diachi" id="diachi" class="form-control" rows="2">${diachiuserdashboard}</textarea>
-							
-							<button class="btn btn-info">Cập nhật</button>
-							
+							</tr>
+						</thead>
+
+						<tbody>
+							<c:forEach var="donhang" items="${listDonHang }">
+								<tr>
+									<form action="userdonhang.htm" method="post">
+										
+										<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="iddonhangdashboard"  value="${donhang.idDonHang }">${donhang.idDonHang }</button></td>
+									</form>
+									
+									<td>${donhang.ngayMua}</td>
+									<c:choose>
+										<c:when test="${donhang.tinhTrang == false }">
+											<td><span>Chưa xử lý</span></td>
+										</c:when>
+										<c:otherwise>
+											<td><span>Đã xử lý</span></td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
+							</c:forEach>
+						</tbody>
+						
+					</table>
+						<form action="dashboarddonhang.htm" method="get" >
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<c:forEach var="value" begin="1" end="${tongpage}" varStatus="status">
+										<c:choose>
+											<c:when test="${indexs == status.index }">
+												<li class="page-item" active>
+													<button name="index-paging" class="btn btn-primary" value="${value }">${value }</button	>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item">
+													<button name="index-paging" class="btn btn-link" value="${value }">${value }</button	>
+												</li>
+											</c:otherwise>
+										</c:choose>
+									
+									
+									</c:forEach>
+								</ul>
+							</nav>
 						</form>
-					</div>
 				</div>
+				
+				<h3>Chi tiết đơn hàng</h3>
+				
+					<div class="col-md-6 col-sm-12">
+					<form id="form-sanpham" action="dashboardcapnhatdonhang.htm" method="post">
+						<input style="display:none !important" type="text" name = "iddonhang" id="iddonhang" class="form-control" value="${iddonhangdashboard}"> 
+						
+						<label for="tendonhang">Mã</label> </br> 
+						<input type="text" name = "tendonhang" id="tendonhang" class="form-control" value="${iddonhangdashboard}"> 
+						
+						<label for="tendangnhapdonhang">Tên đăng nhập</label> </br> 
+						<input type="text" name="tendangnhapdonhang" id="tendangnhapdonhang" class="form-control" value="${tendangnhapdonhangdashboard}"> 
+						
+						<label for="tennguoimuadonhang">Tên người mua</label> </br>			
+						<input type="text" name = "tennguoimuadonhang" id="tennguoimuadonhang" class="form-control" value="${tennguoimuadonhangdashboard}"> 
+						
+						<label for="ngaydonhang">Ngày</label> </br>			
+						<input type="text" name = "ngaydonhang" id="ngaydonhang" class="form-control" value="${ngaydonhangdashboard}"> 
+						
+						<label for="sodienthoaidonhang">Số điện thoại</label> </br> 
+						<input type="text" name = "sodienthoaidonhang" id="sodienthoaidonhang" class="form-control" value="${sodienthoaidonhangdashboard}"> 
+						
+						<label for="diachidonhang">Địa chỉ</label> </br>			
+						<textarea name="diachidonhang" id="diachidonhang" class="form-control" rows="2">${diachidonhangdashboard}</textarea>
+						
+						<label for="ghichudonhang">Ghi chú</label> </br>			
+						<textarea name="ghichudonhang" id="ghichudonhang" class="form-control" rows="3">${ghichudonhangdashboard}</textarea>
+						
+						<table id="table-sanpham" class="table">
+							<thead>
+								<tr>
+									<th>Mã sản phẩm</th>
+									<th>Tên sản phẩm</th>
+									<th>Số lượng</th>
+									<th>Giá</th>
+								
+								</tr>
+							</thead>
+	
+							<tbody>
+							
+								<c:choose>
+									<c:when test="${listChiTietDonHang == null }">
+										<td>
+											<span>Không có đơn hàng</span>
+										</td>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="chitietdonhang" items="${listChiTietDonHang }">
+										<tr>							
+											<td><a href="chitiet/${chitietdonhang.getMaSanPham()}.htm">${chitietdonhang.getMaSanPham()}</a></td>
+											<td>${chitietdonhang.getTenSanPham() }</td>
+											<td>${chitietdonhang.getSoLuong() }</td>
+											<td>${chitietdonhang.getGia() }</td>
+										</tr>
+								</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							
+								
+							</tbody>
+						
+						</table>
+						
+						<label for="tongtiendonhang">Tổng tiền: </label> </br>			
+						<input type="text" name = "tongtiendonhang" id="tongtiendonhang" class="form-control" value="${tongtiendonhangdashboard}"> 
+						
+						
+						
+						
+
+				</form>
+					</div>
+				
+			</div>
+		</div>
 			</c:when>
 			<c:when test="${user == null}">
 				<div class="left-content">
@@ -104,7 +223,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</c:when>
 		</c:choose>
-
+		
+		
+		
+		
+		
+		
 		<!--//content-inner-->
 		<!--/sidebar-menu-->
 		<div class="sidebar-menu">
@@ -114,7 +238,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</header>
 			<div style="border-top: 1px ridge rgba(255, 255, 255, 0.15)"></div>
 			<div class="menu">
-				<ul id="menu">
+				 <ul id="menu">
 					<li id="menu-academico"><a href="home.htm"><i
 							class="fa fa-home"></i><span>Home</span>
 						<div class="clearfix"></div></a></li>
@@ -273,6 +397,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				});
 	</script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

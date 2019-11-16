@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -135,6 +136,20 @@ public class UserDAO implements UserImp {
 			System.out.println(e.getMessage());
 		}
 		return user;
+	}
+
+	@Override
+	public boolean capNhatUser(User user) {
+		Session session = sessionFactory.openSession();
+		Transaction t =  session.beginTransaction();
+		try{
+			session.update(user);
+			t.commit();
+			return true;
+		}catch(Exception e){
+			t.rollback();
+			return false;
+		}
 	}
 
 

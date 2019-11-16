@@ -10,4 +10,5 @@ public interface UserImp {
 	int kiemTraDangKy(String tenDangNhap, String matKhau, String nhapLaiMatKhau);
 	List<User> layDanhSachSanPhamLimit(int start);
 	User layUser(String idUser);
+	boolean capNhatUser(User user);
 }
