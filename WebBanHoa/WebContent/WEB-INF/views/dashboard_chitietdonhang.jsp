@@ -78,121 +78,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				
 
-				<div class="col-md-8 col-sm-12">
-					
+				<div class="col-md-6 col-sm-12">
+					<h3>Đơn hàng</h3>
+					<form id="form-sanpham" action="dashboardcapnhatdonhang.htm" method="post">
+						<input style="display:none !important" type="text" name = "iddonhang" id="iddonhang" class="form-control" value="${iddonhangdashboard}"> 
 						
-					
-			
-					<table id="table-sanpham" class="table">
-						<thead>
-							<tr>
-								<th>
-									<div class="checkbox">
-										<label> <input id="checkall" type="checkbox" value="">
-										</label>
-									</div>
-								</th>
-								<th>Tên đăng nhập</th>
-								<th>Họ tên</th>
-								<th>Số điện thoại</th>
-								<th>Địa chỉ</th>
-								
-							</tr>
-						</thead>
+						<label for="tendonhang">Mã</label> </br> 
+						<input type="text" name = "tendonhang" id="tendonhang" class="form-control" value="${iddonhangdashboard}"> 
+						
+						<label for="tinhtrangdonhang">Tình trạng</label> </br> 
+						<c:choose>
+							<c:when test="${tinhtrangdonhangdashboard == false }">
+								<input type="text" name = "tinhtrangdonhang" id="tinhtrangdonhang" class="form-control" value="Chưa xử lý"> 
+							</c:when>
+							<c:otherwise>
+								<input type="text" name = "tinhtrangdonhang" id="tinhtrangdonhang" class="form-control" value="Đã xử lý">
+							</c:otherwise>
+						</c:choose>
+						
+						<label for="tendangnhapdonhang">Tên đăng nhập</label> </br> 
+						<input type="text" name="tendangnhapdonhang" id="tendangnhapdonhang" class="form-control" value="${tendangnhapdonhangdashboard}"> 
+						
+						<label for="tennguoimuadonhang">Tên người mua</label> </br>			
+						<input type="text" name = "tennguoimuadonhang" id="tennguoimuadonhang" class="form-control" value="${tennguoimuadonhangdashboard}"> 
+						
+						<label for="ngaydonhang">Ngày</label> </br>			
+						<input type="text" name = "ngaydonhang" id="ngaydonhang" class="form-control" value="${ngaydonhangdashboard}"> 
+						
+						<label for="sodienthoaidonhang">Số điện thoại</label> </br> 
+						<input type="text" name = "sodienthoaidonhang" id="sodienthoaidonhang" class="form-control" value="${sodienthoaidonhangdashboard}"> 
+						
+						<label for="diachidonhang">Địa chỉ</label> </br>			
+						<textarea name="diachidonhang" id="diachidonhang" class="form-control" rows="2">${diachidonhangdashboard}</textarea>
+						
+						<label for="ghichudonhang">Ghi chú</label> </br>			
+						<textarea name="ghichudonhang" id="ghichudonhang" class="form-control" rows="3">${ghichudonhangdashboard}</textarea>
+						
 
-						<tbody>
-							<c:forEach var="user" items="${listUser }">
-								<tr>
-									<td>
-										<div class="checkbox">
-											<label> <input type="checkbox"
-												value="${user.tenDangNhap }">
-											</label>
-										</div>
-									</td>
-									<form action="dashboarduser.htm" method="post">
-										<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="iduserdashboard"  value="${user.tenDangNhap }">${user.tenDangNhap }</button></td>
-									</form>
-									<td>${user.hoTen}</td>
-									<td>${user.sdt }</td>
-									<td>${user.diaChi}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
 						
-					</table>
-					<form action="dashboarduser.htm" method="get" >
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
-								<c:forEach var="value" begin="1" end="${tongpage}" varStatus="status">
-									<c:choose>
-										<c:when test="${indexs == status.index }">
-											<li class="page-item" active>
-												<button name="index-paging" class="btn btn-primary" value="${value }">${value }</button	>
-											</li>
-										</c:when>
-										<c:otherwise>
-											<li class="page-item">
-												<button name="index-paging" class="btn btn-link" value="${value }">${value }</button	>
-											</li>
-										</c:otherwise>
-									</c:choose>
-								
-								
-								</c:forEach>
-							</ul>
-						</nav>
-					</form>
+						
+
+				</form>
 				</div>
 				
-					
 				
-					<div class="col-md-4 col-sm-12">
-					
-					<form id="form-sanpham" action="dashboardchitietdonhang.htm" method="post">
-						<h3>Cập nhật thông tin</h3>
-					
-						<label for="idsanpham">Tên đăng nhập</label> </br> 
-						<input type="text" name = "idsanpham" id="idsanpham" class="form-control" value="${iduserdashboard}"> 
-						
-						<label for="tensanpham">Họ tên</label> </br> 
-						<input type="text" name = "tensanpham" id="tensanpham" class="form-control" value="${tenuserdashboard}"> 
-
-						<label for="giasanpham">Số điện thoại</label> </br> 
-						<input type="text" name="giasanpham" id="giasanpham" class="form-control" value="${sdtuserdashboard}"> 
-						
-						<label for="motasanpham">Địa chỉ</label> </br>			
-						<textarea name="motasanpham" id="motasanpham" class="form-control" rows="2">${diachiuserdashboard}</textarea>
-						
-						<h3>Đơn hàng</h3>
-						<table id="table-sanpham" class="table">
+				
+					<div class="col-md-6 col-sm-12">
+					<table id="table-sanpham" class="table">
 							<thead>
 								<tr>
-									<th>Mã</th>
-									<th>Tình trạng</th>									
+									<th>Mã sản phẩm</th>
+									<th>Tên sản phẩm</th>
+									<th>Số lượng</th>
+									<th>Giá</th>
+								
 								</tr>
 							</thead>
-
+	
 							<tbody>
-								<c:forEach var="donhang" items="${listDonHangUser }">
-									<tr>
-										<form action="dashboardchitietdonhang.htm" method="post">
-											<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="iddonhangdashboard"  value="${donhang.idDonHang }">${donhang.idDonHang }</button></td>
-										</form>
-										<c:choose>
-											<c:when test="${donhang.tinhTrang == false }">
-												<td><span>Chưa xử lý</span></td>
-											</c:when>
-											<c:otherwise>
-												<td><span>Đã xử lý</span></td>
-											</c:otherwise>
-										</c:choose>
-									</tr>
+							
+								<c:choose>
+									<c:when test="${listChiTietDonHang == null }">
+										<td>
+											<span>Không có đơn hàng</span>
+										</td>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="chitietdonhang" items="${listChiTietDonHang }">
+										<tr>							
+											<td><a href="chitiet/${chitietdonhang.getMaSanPham()}.htm">${chitietdonhang.getMaSanPham()}</a></td>
+											<td>${chitietdonhang.getTenSanPham() }</td>
+											<td>${chitietdonhang.getSoLuong() }</td>
+											<td>${chitietdonhang.getGia() }</td>
+										</tr>
 								</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							
+								
 							</tbody>
 						
-					</table>
-				</form>
+						</table>
 					</div>
 				
 			</div>

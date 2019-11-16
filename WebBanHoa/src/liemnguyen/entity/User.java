@@ -1,8 +1,12 @@
 package liemnguyen.entity;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +28,10 @@ public class User {
 	private String sdt;
 	@Column(name="hinh_anh")
 	private String hinhAnh;
+	
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
+	private Collection<DonHang> donHangns;
+	
 	public User() {
 		super();
 	}
@@ -37,6 +45,18 @@ public class User {
 		this.email = email;
 		this.sdt = sdt;
 		this.hinhAnh = hinhAnh;
+	}
+	public User(String tenDangNhap, String matKhau, String hoTen, String diaChi, String email, String sdt,
+			String hinhAnh, Collection<DonHang> donHangns) {
+		super();
+		this.tenDangNhap = tenDangNhap;
+		this.matKhau = matKhau;
+		this.hoTen = hoTen;
+		this.diaChi = diaChi;
+		this.email = email;
+		this.sdt = sdt;
+		this.hinhAnh = hinhAnh;
+		this.donHangns = donHangns;
 	}
 	public String getTenDangNhap() {
 		return tenDangNhap;
@@ -80,6 +100,13 @@ public class User {
 	public void setHinhAnh(String hinhAnh) {
 		this.hinhAnh = hinhAnh;
 	}
+	public Collection<DonHang> getDonHangns() {
+		return donHangns;
+	}
+	public void setDonHangns(Collection<DonHang> donHangns) {
+		this.donHangns = donHangns;
+	}
+	
 
 	
 }

@@ -12,48 +12,57 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "DonHang_SanPham")
-public class DonHang_SanPham {
+@Table(name = "ChiTietDonHang")
+public class ChiTietDonHang {
 	@Id
-	@Column(name = "id")
+	@Column(name = "id_chi_tiet_don_hang")
 	@GeneratedValue
-	private int id;
+	private int idChiTietDonHang;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "id_don_hang")
+	private DonHang donHang;
 	
 	@Column(name = "so_luong_sp")
 	private int soLuong;
 	@Column(name = "gia")
 	private int gia;
+	
 	@Column(name = "id_san_pham")
 	private int idSanPham;
-	@Column(name = "id_don_hang")
-	private int idDonHang;
 	
 	// End
-	public DonHang_SanPham() {
+	public ChiTietDonHang() {
 		super();
 	}
 
-
-
-	public DonHang_SanPham(int soLuong, int gia, int idSanPham, int idDonHang) {
+	public ChiTietDonHang(DonHang donHang, int soLuong, int gia, int idSanPham) {
 		super();
+		this.donHang = donHang;
 		this.soLuong = soLuong;
 		this.gia = gia;
 		this.idSanPham = idSanPham;
-		this.idDonHang = idDonHang;
 	}
 
-
-
-	public int getId() {
-		return id;
+	public int getIdChiTietDonHang() {
+		return idChiTietDonHang;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdChiTietDonHang(int idChiTietDonHang) {
+		this.idChiTietDonHang = idChiTietDonHang;
+	}
+
+	public DonHang getDonHang() {
+		return donHang;
+	}
+
+	public void setDonHang(DonHang donHang) {
+		this.donHang = donHang;
 	}
 
 	public int getSoLuong() {
@@ -80,16 +89,11 @@ public class DonHang_SanPham {
 		this.idSanPham = idSanPham;
 	}
 
-	public int getIdDonHang() {
-		return idDonHang;
-	}
-
-	public void setIdDonHang(int idDonHang) {
-		this.idDonHang = idDonHang;
-	}
-
 	
 
 	
+
+
+
 	
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import liemnguyen.entity.ChiTietDonHang;
+import liemnguyen.entity.DonHang;
 import liemnguyen.entity.LoaiSanPham;
 import liemnguyen.entity.SanPham;
 import liemnguyen.entity.User;
@@ -39,7 +41,6 @@ public class DashboardUserController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", 1);
 		indexCurrent = 1;
 		
@@ -49,7 +50,7 @@ public class DashboardUserController {
 		int page = 5; // listSanPham/(số sp mỗi page)
 		model.addAttribute("tongpage", page);
 
-
+			
 		return "dashboard_user";
 	}
 	
@@ -59,7 +60,6 @@ public class DashboardUserController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", index);
 		indexCurrent = Integer.parseInt(index);
 		
@@ -84,7 +84,6 @@ public class DashboardUserController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", indexCurrent);
 		
 //		List<User> listUser = userService.layDanhSachSanPhamLimit((Integer.parseInt(index)-1)*5);
@@ -97,12 +96,15 @@ public class DashboardUserController {
 
 		User user = userService.layUser(iduser);
 
-		System.out.println(indexCurrent);
 		model.addAttribute("iduserdashboard", user.getTenDangNhap());
 		model.addAttribute("tenuserdashboard", user.getHoTen());
 		model.addAttribute("sdtuserdashboard", user.getSdt());
 		model.addAttribute("diachiuserdashboard",user.getDiaChi());
-
+		List<DonHang> listDonHang = (List<DonHang>) user.getDonHangns();
+		model.addAttribute("listDonHangUser",listDonHang);
+		
+		
+		
 		return "dashboard_user";
 	}
 	

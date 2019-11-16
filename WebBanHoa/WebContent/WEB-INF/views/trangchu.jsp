@@ -43,7 +43,14 @@
 			<ul id="navbar-right" class="navbar-nav mr-auto navbar-center">
 				<c:choose>
 					<c:when test="${user != null}">
-						<li class="nav-item" ><a class="nav-link" href="dashboard.htm" style="margin-top:-2px !important">${user}</a></li>
+						<c:choose>
+							<c:when test="${user == admin}">
+								<li class="nav-item" ><a class="nav-link" href="dashboard.htm" style="margin-top:-2px !important">${user}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="nav-item" ><a class="nav-link" href="userchitiet.htm" style="margin-top:-2px !important">${user}</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li class="nav-item"><a class="nav-link" href="dangxuat.htm">ĐĂNG XUẤT</a></li>
 						
 					</c:when>

@@ -43,7 +43,6 @@ public class DashboardCapNhatSanPhamController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "sa");
 		model.addAttribute("indexs", 1);
 		
 		List<SanPham> listSanPham = sanPhamService.layDanhSachSanPhamLimit(0);
@@ -64,7 +63,6 @@ public class DashboardCapNhatSanPhamController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", index);
 		indexCurrent = Integer.parseInt(index);
 		

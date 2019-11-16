@@ -32,8 +32,6 @@ public class SanPham {
 	@JoinColumn(name = "id_loai_sp")
 	private LoaiSanPham loaiSanPham;
 
-
-
 	@Column(name = "ten_sp")
 	private String tenSanPham;
 	@Column(name = "gia")
@@ -49,65 +47,7 @@ public class SanPham {
 	}
 
 	
-	public int getIdSanPham() {
-		return idSanPham;
-	}
-
-
-	public void setIdSanPham(int idSanPham) {
-		this.idSanPham = idSanPham;
-	}
-
-
-	public LoaiSanPham getLoaiSanPham() {
-		return loaiSanPham;
-	}
-
-
-	public void setLoaiSanPham(LoaiSanPham loaiSanPham) {
-		this.loaiSanPham = loaiSanPham;
-	}
-
-
-	public String getTenSanPham() {
-		return tenSanPham;
-	}
-
-
-	public void setTenSanPham(String tenSanPham) {
-		this.tenSanPham = tenSanPham;
-	}
-
-
-	public int getGia() {
-		return gia;
-	}
-
-
-	public void setGia(int gia) {
-		this.gia = gia;
-	}
-
-
-	public String getHinhAnh() {
-		return hinhAnh;
-	}
-
-
-	public void setHinhAnh(String hinhAnh) {
-		this.hinhAnh = hinhAnh;
-	}
-
-
-	public String getMoTa() {
-		return moTa;
-	}
-
-
-	public void setMoTa(String moTa) {
-		this.moTa = moTa;
-	}
-
+	
 
 	public SanPham(LoaiSanPham loaiSanPham, String tenSanPham, int gia, String hinhAnh, String moTa) {
 		super();
@@ -117,6 +57,95 @@ public class SanPham {
 		this.hinhAnh = hinhAnh;
 		this.moTa = moTa;
 	}
+
+
+
+
+	public int getIdSanPham() {
+		return idSanPham;
+	}
+
+
+
+
+	public void setIdSanPham(int idSanPham) {
+		this.idSanPham = idSanPham;
+	}
+
+
+
+
+	public LoaiSanPham getLoaiSanPham() {
+		return loaiSanPham;
+	}
+
+
+
+
+	public void setLoaiSanPham(LoaiSanPham loaiSanPham) {
+		this.loaiSanPham = loaiSanPham;
+	}
+
+
+
+
+
+	public String getTenSanPham() {
+		return tenSanPham;
+	}
+
+
+
+
+	public void setTenSanPham(String tenSanPham) {
+		this.tenSanPham = tenSanPham;
+	}
+
+
+
+
+	public int getGia() {
+		return gia;
+	}
+
+
+
+
+	public void setGia(int gia) {
+		this.gia = gia;
+	}
+
+
+
+
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+
+
+
+
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
+
+
+
+
+	public String getMoTa() {
+		return moTa;
+	}
+
+
+
+
+	public void setMoTa(String moTa) {
+		this.moTa = moTa;
+	}
+
+
+
+
 
 
 	@Override

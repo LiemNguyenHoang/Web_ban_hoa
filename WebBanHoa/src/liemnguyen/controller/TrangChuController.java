@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import liemnguyen.entity.DonHang;
-import liemnguyen.entity.DonHang_SanPham;
+import liemnguyen.entity.ChiTietDonHang;
 import liemnguyen.entity.GioHangSP;
 import liemnguyen.entity.LoaiSanPham;
 import liemnguyen.entity.SanPham;
@@ -71,7 +71,7 @@ public class TrangChuController {
 		List<SanPham> listSanPhams =  sanPhamService.layDanhSachSanPham(0);
 		model.addAttribute("listSanPham",listSanPhams);
 
-		System.out.println(listSanPhams);
+		
 		
 		return "trangchu";
 	}

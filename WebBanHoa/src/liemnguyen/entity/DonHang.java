@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,6 +23,10 @@ public class DonHang {
 	@Column(name = "id_don_hang")
 	@GeneratedValue
 	private int idDonHang;
+
+	@ManyToOne
+	@JoinColumn(name = "ten_dang_nhap")
+	private User user;
 
 	@Column(name = "tinh_trang")
 	private boolean tinhTrang;
@@ -36,7 +41,8 @@ public class DonHang {
 	@Column(name = "dia_chi")
 	private String diaChi;
 
-	
+	@OneToMany(mappedBy="donHang",fetch=FetchType.EAGER)
+	private Collection<ChiTietDonHang> chiTietDonHangs;
 	
 	public DonHang() {
 		super();
@@ -51,7 +57,31 @@ public class DonHang {
 		this.sdt = sdt;
 		this.diaChi = diaChi;
 	}
-	
+
+	public DonHang(User user, boolean tinhTrang, String ngayMua, String ghiChu, String tenNguoiMua, String sdt,
+			String diaChi) {
+		super();
+		this.user = user;
+		this.tinhTrang = tinhTrang;
+		this.ngayMua = ngayMua;
+		this.ghiChu = ghiChu;
+		this.tenNguoiMua = tenNguoiMua;
+		this.sdt = sdt;
+		this.diaChi = diaChi;
+	}
+
+	public DonHang(User user, boolean tinhTrang, String ngayMua, String ghiChu, String tenNguoiMua, String sdt,
+			String diaChi, Collection<ChiTietDonHang> chiTietDonHangs) {
+		super();
+		this.user = user;
+		this.tinhTrang = tinhTrang;
+		this.ngayMua = ngayMua;
+		this.ghiChu = ghiChu;
+		this.tenNguoiMua = tenNguoiMua;
+		this.sdt = sdt;
+		this.diaChi = diaChi;
+		this.chiTietDonHangs = chiTietDonHangs;
+	}
 
 	public int getIdDonHang() {
 		return idDonHang;
@@ -59,6 +89,14 @@ public class DonHang {
 
 	public void setIdDonHang(int idDonHang) {
 		this.idDonHang = idDonHang;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public boolean isTinhTrang() {
@@ -109,7 +147,13 @@ public class DonHang {
 		this.diaChi = diaChi;
 	}
 
+	public Collection<ChiTietDonHang> getChiTietDonHangs() {
+		return chiTietDonHangs;
+	}
 
+	public void setChiTietDonHangs(Collection<ChiTietDonHang> chiTietDonHangs) {
+		this.chiTietDonHangs = chiTietDonHangs;
+	}
 
 	
 	

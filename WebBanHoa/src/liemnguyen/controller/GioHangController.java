@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import liemnguyen.entity.DonHang;
 import liemnguyen.entity.GioHang;
 import liemnguyen.entity.GioHangSP;
 import liemnguyen.entity.LoaiSanPham;
+import liemnguyen.entity.User;
 import liemnguyen.service.DonHangService;
 import liemnguyen.service.LoaiSanPhamService;
+import liemnguyen.service.UserService;
 
 @Controller
 public class GioHangController {
@@ -24,6 +27,9 @@ public class GioHangController {
 
 	@Autowired
 	DonHangService donHangService;
+	
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(value = "/giohang", method = RequestMethod.GET)
 	public String index(HttpSession httpSession, ModelMap model) {
@@ -53,14 +59,23 @@ public class GioHangController {
 	public String index(@RequestParam String tennguoimua, @RequestParam String sodienthoai, @RequestParam String diachi,
 			@RequestParam String ghichu, HttpSession httpSession) {
 		
-		System.out.println("Thêm đơn hàng POST");
+		
 		if (httpSession.getAttribute("gio_hang") != null) {
 			List<GioHangSP> listGioHang = (List<GioHangSP>) httpSession.getAttribute("gio_hang");
 
 			GioHang gioHang = new GioHang(listGioHang, ghichu, tennguoimua, sodienthoai, diachi);
-
-			donHangService.themHoaDon(gioHang);
-
+			
+			User user = new User();
+			if(httpSession.getAttribute("user_name")!= null){
+				user = userService.layUser(httpSession.getAttribute("user_name").toString());
+			}
+			
+			
+			donHangService.themDonHang(gioHang,user);
+			User user2 = userService.layUser("hoang_ky");
+			List<DonHang> list = (List<DonHang>) user2.getDonHangns();
+			
+			
 			// System.out.println(
 			// "ten: "+tennguoimua+"\n"
 			// + "sdt: "+sodienthoai+"\n"

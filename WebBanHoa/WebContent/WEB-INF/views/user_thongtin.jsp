@@ -4,7 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -12,7 +11,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
-<link rel="stylesheet" href="<c:url value="/resource/Styles/styles.css"></c:url>">
 <title>Pooled Admin Panel Category Flat Bootstrap Responsive Web
 	Template | Home :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,16 +33,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Bootstrap Core CSS -->
 
 <link
-	href="<c:url value="/resource/Admin Pooled/css/bootstrap.min.css"></c:url>" rel='stylesheet' type='text/css' />
+	href="<c:url value="/resource/Admin Pooled/css/bootstrap.min.css"></c:url>"
+	rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
 
 <link
 	href="<c:url value="/resource/Admin Pooled/css/style.css"></c:url>"
 	rel='stylesheet' type='text/css' />
-
-<link rel="stylesheet"
-	href="<c:url value="/resource/Admin Pooled/css/morris.css"></c:url>"
-	type="text/css" />
+<link rel="stylesheet" href="css/morris.css" type="text/css" />
 <!-- Graph CSS -->
 
 <link
@@ -65,7 +61,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	rel="<c:url value="/resource/Admin Pooled/css/icon-font.min.css"></c:url>"
 	type='text/css' />
 <!-- //lined-icons -->
-<meta charset="utf-8">
 </head>
 
 <body>
@@ -74,129 +69,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<c:choose>
 			<c:when test="${user != null}">
 				<div class="left-content">
-			<div class="row" style="background: white !important">
-
-				
-
-				<div class="col-md-8 col-sm-12">
-					
-						
-					
-			
-					<table id="table-sanpham" class="table">
-						<thead>
-							<tr>
-								<th>
-									<div class="checkbox">
-										<label> <input id="checkall" type="checkbox" value="">
-										</label>
-									</div>
-								</th>
-								<th>Tên đăng nhập</th>
-								<th>Họ tên</th>
-								<th>Số điện thoại</th>
-								<th>Địa chỉ</th>
-								
-							</tr>
-						</thead>
-
-						<tbody>
-							<c:forEach var="user" items="${listUser }">
-								<tr>
-									<td>
-										<div class="checkbox">
-											<label> <input type="checkbox"
-												value="${user.tenDangNhap }">
-											</label>
-										</div>
-									</td>
-									<form action="dashboarduser.htm" method="post">
-										<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="iduserdashboard"  value="${user.tenDangNhap }">${user.tenDangNhap }</button></td>
-									</form>
-									<td>${user.hoTen}</td>
-									<td>${user.sdt }</td>
-									<td>${user.diaChi}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						
-					</table>
-					<form action="dashboarduser.htm" method="get" >
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
-								<c:forEach var="value" begin="1" end="${tongpage}" varStatus="status">
-									<c:choose>
-										<c:when test="${indexs == status.index }">
-											<li class="page-item" active>
-												<button name="index-paging" class="btn btn-primary" value="${value }">${value }</button	>
-											</li>
-										</c:when>
-										<c:otherwise>
-											<li class="page-item">
-												<button name="index-paging" class="btn btn-link" value="${value }">${value }</button	>
-											</li>
-										</c:otherwise>
-									</c:choose>
-								
-								
-								</c:forEach>
-							</ul>
-						</nav>
-					</form>
-				</div>
-				
-					
-				
-					<div class="col-md-4 col-sm-12">
-					
-					<form id="form-sanpham" action="dashboardchitietdonhang.htm" method="post">
-						<h3>Cập nhật thông tin</h3>
-					
-						<label for="idsanpham">Tên đăng nhập</label> </br> 
-						<input type="text" name = "idsanpham" id="idsanpham" class="form-control" value="${iduserdashboard}"> 
-						
-						<label for="tensanpham">Họ tên</label> </br> 
-						<input type="text" name = "tensanpham" id="tensanpham" class="form-control" value="${tenuserdashboard}"> 
-
-						<label for="giasanpham">Số điện thoại</label> </br> 
-						<input type="text" name="giasanpham" id="giasanpham" class="form-control" value="${sdtuserdashboard}"> 
-						
-						<label for="motasanpham">Địa chỉ</label> </br>			
-						<textarea name="motasanpham" id="motasanpham" class="form-control" rows="2">${diachiuserdashboard}</textarea>
-						
-						<h3>Đơn hàng</h3>
-						<table id="table-sanpham" class="table">
-							<thead>
-								<tr>
-									<th>Mã</th>
-									<th>Tình trạng</th>									
-								</tr>
-							</thead>
-
-							<tbody>
-								<c:forEach var="donhang" items="${listDonHangUser }">
-									<tr>
-										<form action="dashboardchitietdonhang.htm" method="post">
-											<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="iddonhangdashboard"  value="${donhang.idDonHang }">${donhang.idDonHang }</button></td>
-										</form>
-										<c:choose>
-											<c:when test="${donhang.tinhTrang == false }">
-												<td><span>Chưa xử lý</span></td>
-											</c:when>
-											<c:otherwise>
-												<td><span>Đã xử lý</span></td>
-											</c:otherwise>
-										</c:choose>
-									</tr>
-								</c:forEach>
-							</tbody>
-						
-					</table>
-				</form>
+					<div>
+						<span>Có User</span>
 					</div>
-				
-			</div>
-		</div>
+				</div>
 			</c:when>
 			<c:when test="${user == null}">
 				<div class="left-content">
@@ -206,12 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</c:when>
 		</c:choose>
-		
-		
-		
-		
-		
-		
+
 		<!--//content-inner-->
 		<!--/sidebar-menu-->
 		<div class="sidebar-menu">
@@ -221,20 +92,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</header>
 			<div style="border-top: 1px ridge rgba(255, 255, 255, 0.15)"></div>
 			<div class="menu">
-				 <ul id="menu">
+				<ul id="menu">
 					<li id="menu-academico"><a href="home.htm"><i
 							class="fa fa-home"></i><span>Home</span>
 						<div class="clearfix"></div></a></li>
-                    <li id="menu-academico"><a href="dashboarddonhang.htm"><i class="fa fa-shopping-cart"></i><span>Đơn hàng</span><div class="clearfix"></div></a></li>
-                    <li id="menu-academico"><a ><i class="fa fa-list-ul" aria-hidden="true"></i><span>Sản phẩm</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
-                        <ul id="menu-academico-sub">
-                            <li id="menu-academico-avaliacoes" ><a href="dashboardthemsanpham.htm">Thêm</a></li>
-                            <li id="menu-academico-avaliacoes"><a href="dashboardcapnhatsanpham.htm">Cập nhật</a></li>
-                        </ul>
-                    </li>
-                    <li id="menu-academico"><a href="dashboarduser.htm"><i class="fa fa-users" aria-hidden="true"></i><span>User</span><div class="clearfix"></div></a></li>
-                    <li><a href="dangxuat.htm"><i class="fa fa-sign-out"></i>  <span>Đăng xuất</span><div class="clearfix"></div></a></li>
-                </ul>
+					<li id="menu-academico"><a href="dashboarddonhang.htm"><i
+							class="fa fa-shopping-cart"></i><span>Giỏ hàng</span>
+						<div class="clearfix"></div></a></li>
+					<li id="menu-academico"><a href="dashboarduser.htm"><i
+							class="fa fa-list-alt" aria-hidden="true"></i><span>Đơn hàng</span>
+					<div class="clearfix"></div></a></li>
+					<li id="menu-academico"><a href="userthongtin.htm"><i
+							class="fa fa-users" aria-hidden="true"></i><span>Thông tin</span>
+						<div class="clearfix"></div></a></li>
+					<li><a href="dangxuat.htm"><i class="fa fa-sign-out"></i>
+							<span>Đăng xuất</span>
+						<div class="clearfix"></div></a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -377,7 +251,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				});
 	</script>
-	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

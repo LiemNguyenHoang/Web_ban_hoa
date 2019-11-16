@@ -26,10 +26,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import liemnguyen.entity.DonHang_SanPham;
+import liemnguyen.entity.ChiTietDonHang;
+import liemnguyen.entity.DonHang;
 import liemnguyen.entity.GioHangSP;
 import liemnguyen.entity.LoaiSanPham;
 import liemnguyen.entity.SanPham;
+import liemnguyen.service.DonHangService;
 import liemnguyen.service.LoaiSanPhamService;
 import liemnguyen.service.SanPhamService;
 import liemnguyen.service.UserService;
@@ -40,6 +42,8 @@ import liemnguyen.service.UserService;
 public class ApiController {
 	@Autowired
 	SanPhamService sanPhamService;
+	@Autowired
+	DonHangService donHangService;
 	@Autowired
 	LoaiSanPhamService loaiSanPhamService;
 	@Autowired
@@ -174,6 +178,18 @@ public class ApiController {
 	@ResponseBody
 	public void xoaSanPhamTheoId(@RequestParam("masanpham") int idSP) {
 		sanPhamService.xoaSanPhamTheoId(idSP);
+	}
+	
+	@RequestMapping(value = "XoaDonHang", method = RequestMethod.GET)
+	@ResponseBody
+	public void xoaDonHangTheoId(@RequestParam("madonhang") int idDH) {
+//		donHangService.xoaDonHangTheoId(idDH);
+		DonHang donHang = donHangService.layDonHang(idDH);
+		List<ChiTietDonHang> list = (List<ChiTietDonHang>) donHang.getChiTietDonHangs();
+		for(int i = 0;i<list.size();i++){
+			donHangService.xoaChiTietDonHangTheoId(list.get(i).getIdChiTietDonHang());
+		}
+		donHangService.xoaDonHangTheoId(idDH);
 	}
 
 	@RequestMapping(value = "UploadFile", method = RequestMethod.POST)

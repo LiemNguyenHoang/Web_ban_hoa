@@ -15,16 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import liemnguyen.entity.ChiTietDonHang;
 import liemnguyen.entity.DonHang;
-import liemnguyen.entity.LoaiSanPham;
 import liemnguyen.entity.SanPham;
 import liemnguyen.entity.Temp_DonHang;
+import liemnguyen.entity.User;
 import liemnguyen.service.DonHangService;
 import liemnguyen.service.LoaiSanPhamService;
 import liemnguyen.service.SanPhamService;
-
 @Controller
-public class DashboardDonHangController {
-	int indexCurrent = 1;
+public class DashboardChiTietDonHang {
+int indexCurrent = 1;
 	
 	@Autowired
 	LoaiSanPhamService loaiSanPhamService;
@@ -38,61 +37,38 @@ public class DashboardDonHangController {
 	@Autowired
 	ServletContext context;
 	
-	@RequestMapping(value = "dashboarddonhang", method = RequestMethod.GET)
+	@RequestMapping(value = "dashboardchitietdonhang", method = RequestMethod.GET)
 	public String index(Model model, HttpSession httpSession) {
 		if (httpSession.getAttribute("user_name") != null) {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
-		model.addAttribute("indexs", 1);
 		
-		List<DonHang> listDonHangs = donHangService.layDanhSachDonHangLimit(0);
-		model.addAttribute("listDonHang", listDonHangs);
-		
-		int page = 5; // listSanPham/(số sp mỗi page)
-		model.addAttribute("tongpage", page);
 
-		return "dashboard_donhang";
+		return "dashboard_chitietdonhang";
 	}
 	
-	@RequestMapping(value = "dashboarddonhang", method = RequestMethod.GET,params="index-paging")
+	@RequestMapping(value = "dashboardchitietdonhang", method = RequestMethod.GET,params="index-paging")
 	public String index(Model model, HttpSession httpSession,@RequestParam("index-paging")String index) {
 		if (httpSession.getAttribute("user_name") != null) {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
-		model.addAttribute("indexs", index);
-		indexCurrent = Integer.parseInt(index);
 		
-		List<DonHang> listDonHangs = donHangService.layDanhSachDonHangLimit((Integer.parseInt(index)-1)*5);
-		model.addAttribute("listDonHang", listDonHangs);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
-		model.addAttribute("tongpage", page);
-
-//		model.addAttribute("danhmucsp", listLoaiSanPham);
-
-		return "dashboard_donhang";
+		return "dashboard_user";
 	}
 	
-	@RequestMapping(value = "dashboarddonhang", method = RequestMethod.POST)
-	public String index(Model model, HttpSession httpSession, @RequestParam("iddonhangdashboard") Integer iddonhangsanpham) {
+	@RequestMapping(value = "dashboardchitietdonhang", method = RequestMethod.POST)
+	public String index1(Model model, HttpSession httpSession,@RequestParam("iddonhangdashboard") String id) {
 		if (httpSession.getAttribute("user_name") != null) {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
-		model.addAttribute("indexs", indexCurrent);
 		
-		List<DonHang> listDonHang = donHangService.layDanhSachDonHangLimit((indexCurrent-1)*5);
-		model.addAttribute("listDonHang", listDonHang);
-
-		int page = 5; // listSanPham/(số sp mỗi page)
-		model.addAttribute("tongpage", page);
-
-		DonHang donHang = donHangService.layDonHang(iddonhangsanpham);
+		
+		// Start
+		DonHang donHang = donHangService.layDonHang(Integer.parseInt(id));
 //		SanPham sanPham = sanPhamService.laySanPham(idsanpham);
 //		model.addAttribute("idsanphamdashboard", idsanpham);
 //		model.addAttribute("tensanphamdashboard", sanPham.getTenSanPham());
@@ -105,6 +81,7 @@ public class DashboardDonHangController {
 //		}
 		
 		model.addAttribute("iddonhangdashboard", donHang.getIdDonHang()+"");
+		model.addAttribute("tinhtrangdonhangdashboard", donHang.isTinhTrang()+"");
 		if(donHang.getUser()==null){
 			model.addAttribute("tendangnhapdonhangdashboard", null);
 		}else{
@@ -132,33 +109,12 @@ public class DashboardDonHangController {
 		}
 		model.addAttribute("listChiTietDonHang", temp_DonHangs);
 		model.addAttribute("tongtiendonhangdashboard", tien);
-		return "dashboard_donhang";
-	}
-	
-	@RequestMapping(value = "dashboardcapnhatdonhang", method = RequestMethod.POST)
-	public String index1(Model model, HttpSession httpSession, @RequestParam("iddonhang") Integer iddonhangsanpham) {
-		if (httpSession.getAttribute("user_name") != null) {
-			String user = (String) httpSession.getAttribute("user_name");
-			model.addAttribute("user", user);
-		}
-		model.addAttribute("user", "asd");
-		model.addAttribute("indexs", indexCurrent);
 		
-		List<DonHang> listDonHang = donHangService.layDanhSachDonHangLimit((indexCurrent-1)*5);
-		model.addAttribute("listDonHang", listDonHang);
+		//End
+		
+		System.out.println("id chitietdonhang: "+id);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
-		model.addAttribute("tongpage", page);
-
-		DonHang donHang = donHangService.layDonHang(iddonhangsanpham);
-		donHang.setTinhTrang(true);
-		if(donHangService.capNhatDonHang(donHang)){
-			System.out.println("update donhang ok");
-		}else{
-
-			System.out.println("update donhang not ok");
-		}
-
-		return "redirect:dashboarddonhang.htm";
+		return "dashboard_chitietdonhang";
 	}
+
 }

@@ -209,8 +209,14 @@ $(document).ready(
 					$("#table-sanpham input").each(function() {
 						$(this).attr("checked", true);
 					})
+					$("#table-donhang input").each(function() {
+						$(this).attr("checked", true);
+					})
 				} else {
 					$("#table-sanpham input").each(function() {
+						$(this).attr("checked", false);
+					})
+					$("#table-donhang input").each(function() {
 						$(this).attr("checked", false);
 					})
 				}
@@ -225,6 +231,23 @@ $(document).ready(
 						type : "GET",
 						data : {
 							masanpham : masanpham
+						},
+
+						success : function(value) {
+							This.closest("tr").remove();
+						}
+					});
+				})
+			});
+			$("#xoa-donhang").click(function() {
+				$("#table-donhang >tbody input:checked").each(function() {
+					var madonhang = $(this).val();
+					var This = $(this);
+					$.ajax({
+						url : "/WebBanHoa/api/XoaDonHang.htm",
+						type : "GET",
+						data : {
+							madonhang : madonhang
 						},
 
 						success : function(value) {
