@@ -17,14 +17,13 @@ import liemnguyen.service.UserService;
 
 @Controller
 @RequestMapping("/")
-public class UserThongTinController {
+public class UserCapNhatController {
 
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="userthongtin",method=RequestMethod.GET)
+	@RequestMapping(value="usercapnhat",method=RequestMethod.GET)
 	public String index(Model model,HttpSession httpSession){
-		model.addAttribute("user","asd");
 		if(httpSession.getAttribute("user_name")!=null){
 			String usr = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user",usr);
@@ -39,14 +38,12 @@ public class UserThongTinController {
 			
 			
 		}
-		return "user_thongtin";
+		return "user_capnhat";
 	}
 	
-	@RequestMapping(value="userthongtin",method=RequestMethod.POST)
+	@RequestMapping(value="usercapnhat",method=RequestMethod.POST)
 	public String index1(Model model,HttpSession httpSession,
 			@RequestParam("tendangnhap")String tenDangNhap,
-			@RequestParam("matkhau")String matKhau,
-			@RequestParam("nhaplaimatkhau")String nhapLaiMatKhau,
 			@RequestParam("hoten")String hoTen,
 			@RequestParam("sodienthoai")String soDienThoai,
 			@RequestParam("diachi")String diaChi){
@@ -56,11 +53,11 @@ public class UserThongTinController {
 			
 			User user = userService.layUser(usr);
 			// cập nhật password
-			if(!matKhau.equals("") || !nhapLaiMatKhau.equals("")){
-
-				System.out.println("matKhau: "+matKhau);
-				System.out.println("nhapLaiMatKhau: "+nhapLaiMatKhau);
-			}
+//			if(!matKhau.equals("") || !nhapLaiMatKhau.equals("")){
+//
+//				System.out.println("matKhau: "+matKhau);
+//				System.out.println("nhapLaiMatKhau: "+nhapLaiMatKhau);
+//			}
 			user.setHoTen(hoTen);
 			user.setSdt(soDienThoai);
 			user.setDiaChi(diaChi);

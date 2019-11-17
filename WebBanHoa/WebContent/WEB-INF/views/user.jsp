@@ -82,15 +82,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li id="menu-academico"><a href="home.htm"><i
 							class="fa fa-home"></i><span>Home</span>
 						<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="dashboarddonhang.htm"><i
+					<li id="menu-academico"><a href="usergiohang.htm"><i
 							class="fa fa-shopping-cart"></i><span>Giỏ hàng</span>
 						<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="dashboarduser.htm"><i
+					<li id="menu-academico"><a href="userdonhang.htm"><i
 							class="fa fa-list-alt" aria-hidden="true"></i><span>Đơn hàng</span>
 					<div class="clearfix"></div></a></li>
-					<li id="menu-academico"><a href="userthongtin.htm"><i
-							class="fa fa-users" aria-hidden="true"></i><span>Thông tin</span>
-						<div class="clearfix"></div></a></li>
+					<li id="menu-academico"><a ><i class="fa fa-users" aria-hidden="true"></i><span>Thông tin</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+                        <ul id="menu-academico-sub">
+                            <li id="menu-academico-avaliacoes"><a href="usercapnhat.htm">Cập nhật</a></li>
+                            <li id="menu-academico-avaliacoes" ><a href="userthaydoimatkhau.htm">Thay đổi mật khẩu</a></li>
+                        </ul>
+                    </li>
 					<li><a href="dangxuat.htm"><i class="fa fa-sign-out"></i>
 							<span>Đăng xuất</span>
 						<div class="clearfix"></div></a></li>

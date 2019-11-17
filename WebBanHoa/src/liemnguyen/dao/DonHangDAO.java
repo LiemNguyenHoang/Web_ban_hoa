@@ -44,14 +44,21 @@ public class DonHangDAO implements DonHangImp {
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
+		if(user.getTenDangNhap()==null){
+			user=new User("noname", "12345", null, null, null, null, null);
+			System.out.println("user tendangnhap: null");
+		}
+		System.out.println("user getTenDangNhap: "+user.getTenDangNhap());
 		DonHang donHang = new DonHang(user,false, dtf.format(now).toString(), gioHang.getGhiChu(), gioHang.getTenNguoiMua(),
 				gioHang.getSdt(), gioHang.getDiaChi());
 
 		Session session = sessionFactory.openSession();
 		Transaction t = session.beginTransaction();
+
 		try {
 			session.save(donHang);
 			t.commit();
+			System.out.println("thêm donhang ok");
 			session.close();
 			
 			// Start: thêm chitietdonhang

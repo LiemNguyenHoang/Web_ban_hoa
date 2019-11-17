@@ -44,7 +44,6 @@ public class DashboardDonHangController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", 1);
 		
 		List<DonHang> listDonHangs = donHangService.layDanhSachDonHangLimit(0);
@@ -62,7 +61,6 @@ public class DashboardDonHangController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", index);
 		indexCurrent = Integer.parseInt(index);
 		
@@ -83,7 +81,6 @@ public class DashboardDonHangController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", indexCurrent);
 		
 		List<DonHang> listDonHang = donHangService.layDanhSachDonHangLimit((indexCurrent-1)*5);
@@ -141,7 +138,6 @@ public class DashboardDonHangController {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		model.addAttribute("user", "asd");
 		model.addAttribute("indexs", indexCurrent);
 		
 		List<DonHang> listDonHang = donHangService.layDanhSachDonHangLimit((indexCurrent-1)*5);

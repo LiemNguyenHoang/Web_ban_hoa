@@ -14,7 +14,11 @@ $(document).ready(
 							},
 
 							success : function(value) {
-								if (value == -1) {
+								if (value == -3) {
+									alert("Mật khẩu không hợp lệ")
+								} else if (value == -2) {
+									alert("Tên đăng nhập không hợp lệ")
+								} else if (value == -1) {
 									alert("bug select user")
 								} else if (value == 0) {
 									alert("Tên đăng nhập không tồn tại")
@@ -50,7 +54,11 @@ $(document).ready(
 							},
 
 							success : function(value) {
-								if (value == -1) {
+								if (value == -3) {
+									alert("Mật khẩu không hợp lệ")
+								} else if (value == -2) {
+									alert("Tên đăng nhập không hợp lệ")
+								} else  if (value == -1) {
 									alert("bug select user")
 								} else if (value == 0) {
 									alert("Mật khẩu không trùng khớp")

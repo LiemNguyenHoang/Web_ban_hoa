@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -30,7 +31,7 @@
 				<li class="nav-item"><a class="nav-link" href="home.htm">TRANG CHỦ</a></li>
 				<li class="nav-item dropdown" >
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SẢN PHẨM </a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: black !important">	
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: black !important ">	
 						<c:forEach var="value" items="${listloaisanpham }">
 							<li style="padding:10px !important"><a href="danhmuc/${value.getId() }.htm">${value.getTenLoai() }</a></li>
 							<li role="separator" class="divider"></li>
@@ -43,15 +44,23 @@
 			<ul id="navbar-right" class="navbar-nav mr-auto navbar-center">
 				<c:choose>
 					<c:when test="${user != null}">
-						<li class="nav-item" ><a class="nav-link" href="dangnhap.htm" style="margin-top:-2px !important">${user}</a></li>
+						<c:choose>
+							<c:when test="${user == 'admin'}">
+								<li class="nav-item" ><a class="nav-link" href="dashboard.htm" style="margin-top:-2px !important">${user}</a></li>
+							</c:when>
+							<c:when test="${user != 'admin'}">
+								<li class="nav-item" ><a class="nav-link" href="userchitiet.htm" style="margin-top:-2px !important">${user}</a></li>
+							</c:when>
+						</c:choose>
 						<li class="nav-item"><a class="nav-link" href="dangxuat.htm">ĐĂNG XUẤT</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item"><a class="nav-link" href="dangnhap.htm">ĐĂNG KÝ / ĐĂNG NHẬP</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><img id="imgshopping" src="<c:url value="/resource/image/shopping-cart.png"></c:url>" /></li>
-				<li class="soluonggiohang"><span>${soluong}</span></li>
+				<li ><a href="giohang.htm"><img id="imgshopping" src="<c:url value="/resource/image/shopping-cart.png" ></c:url>" style="margin-top: 10px !important;"/></a></li>
+				<li class="soluonggiohang" style="color:white !important"><span >${soluong}</span></li>
+				
 			</ul>
 
 		</div>
@@ -86,7 +95,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<h4 id="tongtien" style="color: red !important">
+				<h4 style="color: red !important">
 					Tổng tiền: <span id="tongtien">0</span>
 				</h4>
 			</div>
@@ -94,19 +103,22 @@
 			<div class="col-md-6 col-sm-12">
 				<h3>Thông tin người nhận</h3>
 				<div class="form-group">
-					<form action="" method="post">
-						<label for="tennguoimua">Tên người mua</label> <input
-							class="form-control" id="tennguoimua" name="tennguoimua" /> <label
-							for="sodienthoai">Số điện thoại</label> <br> <input
-							class="form-control" id="sodienthoai" name="sodienthoai" /> <label
-							for="diachi">Địa chỉ</label> <br> <input
-							class="form-control" id="diachi" name="diachi" /> <label
-							for="ghichu">Ghi chú</label><br>
-						<textarea class="form-control" rows="3" id="ghichu" name="ghichu"></textarea>
-						<br> 
+					<form:form action="" method="post" modelAttribute="giohangMA">
+						<input class="form-control" id="tennguoimua" name="tenNguoiMua" path="tenNguoiMua" placeholder="Tên người mua" value="${tennguoimuadonhang }"/> 
+						<form:errors path="tenNguoiMua" style="color:red !important"></form:errors>
+						
+						<input class="form-control" id="sodienthoai" name="sdt"  path="sdt"  placeholder="Số điện thoại" value="${sdtdonhang }"/> 
+						<form:errors path="sdt" style="color:red !important"></form:errors>
+						
+						<input class="form-control" id="diachi" name="diaChi" path="diaChi" placeholder="Địa chỉ" value="${diachidonhang }"/> 
+						<form:errors path="diaChi" style="color:red !important"></form:errors>
+						
+						<textarea class="form-control" rows="3" id="ghichu" name="ghiChu"  path="ghiChu" placeholder="Ghi chú">${ghichudonhang }</textarea><br> 
+						<form:errors path="ghiChu" style="color:red !important"></form:errors>
+						
 						<input id="btnDatHang" type="submit" class="btn btn-primary" value="Đặt hàng" />
 
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>

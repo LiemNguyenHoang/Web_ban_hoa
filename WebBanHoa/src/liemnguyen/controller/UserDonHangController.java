@@ -27,7 +27,7 @@ import liemnguyen.service.UserService;
 
 @Controller
 @RequestMapping("/")
-public class UserDonaHangController {
+public class UserDonHangController {
 	@Autowired
 	LoaiSanPhamService loaiSanPhamService;
 	

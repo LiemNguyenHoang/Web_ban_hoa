@@ -89,7 +89,7 @@
 										<span style="display:none !important" class="giasanpham">${sanpham.getGia()}</span>
 										<span style="display:none !important" class="hinhanhsanpham">${sanpham.getHinhAnh()}</span>
 										<button class=" btn btn-primary btn-giohang">Mua</button>
-										<button class=" btn btn-link"> <a href="chitiet/${sanpham.getIdSanPham()}.htm">Chi tiết</a> </button>
+										<button class=" btn btn-link"> <a href="../chitiet/${sanpham.getIdSanPham()}.htm">Chi tiết</a> </button>
 									</div>
 								</div>
 							

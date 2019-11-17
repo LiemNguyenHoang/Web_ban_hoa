@@ -52,8 +52,8 @@
 
 	<div id = "container" style="margin:100px !important;margin-left:400px !important;margin-right:400px !important;">
 		<div>
-			<div style="margin:10px"><span id="dangnhap" class="actived">Đăng nhập</span> / <span id="dangky">Đăng ký</span></div>
-
+			<div style="margin:10px"><span id="dangnhap" class="actived">Đăng nhập</span> / <span id="dangky">Đăng ký </span><span>(* Dùng chữ hoa, thường, số)</span></div>
+			
 			<div id="login" >
 					
 					<form>

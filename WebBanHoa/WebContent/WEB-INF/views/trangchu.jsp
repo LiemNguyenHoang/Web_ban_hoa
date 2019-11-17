@@ -44,12 +44,12 @@
 				<c:choose>
 					<c:when test="${user != null}">
 						<c:choose>
-							<c:when test="${user == admin}">
+							<c:when test="${user == 'admin'}">
 								<li class="nav-item" ><a class="nav-link" href="dashboard.htm" style="margin-top:-2px !important">${user}</a></li>
 							</c:when>
-							<c:otherwise>
+							<c:when test="${user != 'admin'}">
 								<li class="nav-item" ><a class="nav-link" href="userchitiet.htm" style="margin-top:-2px !important">${user}</a></li>
-							</c:otherwise>
+							</c:when>
 						</c:choose>
 						<li class="nav-item"><a class="nav-link" href="dangxuat.htm">ĐĂNG XUẤT</a></li>
 						
