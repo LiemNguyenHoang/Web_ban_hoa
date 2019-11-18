@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</td>
 									<%-- <td><a class="capnhatsanpham" data-id="${sanpham.idSanPham }">${sanpham.tenSanPham }</a></td> --%>
 									<%-- <td><a class="capnhatsanpham" data-id="${sanpham.idSanPham }">${sanpham.tenSanPham }</a></td> --%>
-									<form action="dashboardcapnhatsanpham.htm" method="post">
+									<form action="dashboardcapnhatchitietsanpham.htm" method="post">
 										
 										<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="idsanphamdashboard"  value="${sanpham.idSanPham }">${sanpham.tenSanPham }</button></td>
 									</form>
@@ -152,10 +152,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3>Cập nhật sản phẩm</h3>
 				
 					<div class="col-md-6 col-sm-12">
-					<form id="form-sanpham" action="dashboardcapnhatsanphamthanhcong.htm" method="post" enctype="multipart/form-data">
+					<form id="form-sanpham" action="dashboardcapnhatsanpham.htm" method="post" enctype="multipart/form-data">
 						<input style="display:none !important" type="text" name = "idsanpham" id="idsanpham" class="form-control" value="${idsanphamdashboard}"> 
 						
-						<label for="tensanpham">Tên sản phẩm</label> </br> 
+						<label for="tensanpham">Tên sản phẩm</label><span style="color:red !important">${tenCapNhatSanPham}</span>  </br> 
 						<input type="text" name = "tensanpham" id="tensanpham" class="form-control" value="${tensanphamdashboard}"> 
 						
 						<label for="danhmucsanpham">Loại</label> </br> 
@@ -173,14 +173,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</select> 
 						
 						
-						<label for="giasanpham">Giá</label> </br> 
+						<label for="giasanpham">Giá</label><span style="color:red !important">${giaCapNhatSanPham}</span> </ </br> 
 						<input type="text" name="giasanpham" id="giasanpham" class="form-control" value="${giasanphamdashboard}"> 
 						
-						<label for="motasanpham">Mô tả</label> </br>			
+						<label for="motasanpham">Mô tả</label><span style="color:red !important">${moTaCapNhatSanPham} </br>			
 						<textarea name="motasanpham" id="motasanpham" class="form-control" rows="3">${motasanphamdashboard}</textarea>
 						
-						<label for="hinhanhsanpham">Hình ảnh</label> </br> 
+						<label for="hinhanhsanpham">Hình ảnh</label><span style="color:red !important">${hinAnhCapNhatSanPham} </br>		 </br> 
 						<input type="file" name="hinhanhsanpham" id="hinhanhsanpham" class="form-control" value="not">
+						
 						<button class="btn btn-info">Cập nhật sản phẩm</button>
 
 				</form>

@@ -76,30 +76,34 @@ public class UserCapNhatController {
 				model.addAttribute("hoTen"," *Dùng chữ hoa, thường, số");
 			}else{
 				model.addAttribute("hoTen",null);
-			}
-			parttern = "^[0-9]{1,11}$";
-			regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);
-			matcher = regex.matcher(soDienThoai.trim());
-			if(!matcher.find()){
-				model.addAttribute("soDienThoai"," *Dùng số");
-			}else{
-				model.addAttribute("soDienThoai",null);
-			}
-			parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
-		            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
-		            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
-			regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);
-			matcher = regex.matcher(diaChi.trim());
-			if(!matcher.find()){
-				model.addAttribute("diaChi"," *Dùng chữ hoa, thường, số");
-			}else{
-				model.addAttribute("diaChi",null);
-				user.setHoTen(hoTen);
-				user.setSdt(soDienThoai);
-				user.setDiaChi(diaChi);
 				
-				userService.capNhatUser(user);
+				parttern = "^[0-9]{1,11}$";
+				regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);
+				matcher = regex.matcher(soDienThoai.trim());
+				if(!matcher.find()){
+					model.addAttribute("soDienThoai"," *Dùng số");
+				}else{
+					model.addAttribute("soDienThoai",null);
+					
+					parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+				            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+				            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
+					regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);
+					matcher = regex.matcher(diaChi.trim());
+					if(!matcher.find()){
+						model.addAttribute("diaChi"," *Dùng chữ hoa, thường, số");
+					}else{
+						model.addAttribute("diaChi",null);
+						user.setHoTen(hoTen);
+						user.setSdt(soDienThoai);
+						user.setDiaChi(diaChi);
+						
+						userService.capNhatUser(user);
+					}
+				}
+				
 			}
+			
 			
 
 			

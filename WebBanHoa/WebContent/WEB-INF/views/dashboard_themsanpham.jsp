@@ -78,9 +78,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<h3>Sản phẩm</h3>
 				<form id="form-sanpham" action="dashboardthemsanpham.htm" method="post" enctype="multipart/form-data">
-						<div><label for="tensanpham">Tên sản phẩm</label> </div>
+						<div><label for="tensanpham">Tên sản phẩm</label><span style="color:red !important">${tenSanPham}</span>  </div>
 						
-						<div><input type="text" name = "tensanpham" id="tensanpham" class="form-control"> </div>
+						<div><input type="text" name = "tensanpham" id="tensanpham" class="form-control" value="${tensanphamuser }"> </div>
 						
 						<div><label for="danhmucsanpham">Loại</label> </div>
 						
@@ -90,16 +90,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</c:forEach>
 						</select> </div>
 						
-						<div><label for="giasanpham">Giá</label></div>
+						<div><label for="giasanpham">Giá</label><span style="color:red !important">${giaSanPham}</span> </div>
 						
-						<div><input type="text" name="giasanpham" id="giasanpham" class="form-control"> </div>
+						<div><input type="text" name="giasanpham" id="giasanpham" class="form-control" value="${giasanphamuser }"> </div>
 						
-						<div><label for="motasanpham">Mô tả</label>	</div>
+						<div><label for="motasanpham">Mô tả</label><span style="color:red !important">${moTaSanPham}</span> 	</div>
 						
-						<div><textarea name="motasanpham" id="motasanpham" class="form-control" rows="3"></textarea></div>		
+						<div><textarea name="motasanpham" id="motasanpham" class="form-control" rows="3" >${motasanphamuser }</textarea></div>		
 						
-						<div><label for="hinhanhsanpham">Hình ảnh</label> </div>
-						<div><input type="file" name="hinhanhsanpham" id="hinhanhsanpham" class="form-control" value="not"></div>
+						<div><label for="hinhanhsanpham">Hình ảnh</label><span style="color:red !important">${hinhAnhSanPham}</span> </div>
+						<div><input type="file" name="hinhanhsanpham" id="hinhanhsanpham" class="form-control" value="${hinhanhsanphamuser }" ></div>
 						
 						<button>Thêm sản phẩm</button>
 						
