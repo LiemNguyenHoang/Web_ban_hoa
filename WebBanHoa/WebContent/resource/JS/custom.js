@@ -335,5 +335,46 @@ $(document).ready(
 //					}
 //				});
 //			});
+			$("#btn-thaydoimatkhau").click(
+					function() {
+						var matkhau = $("#matkhau").val().trim();
+						var matkhaumoi = $("#matkhaumoi").val().trim();
+						var nhaplaimatkhaumoi = $("#nhaplaimatkhaumoi").val().trim();
+						
+						var myRe = /\W+/;
+						if(myRe.test(matkhau)||matkhau.length==0){
+							alert("Mật khẩu: Chỉ nhập chữ hoa, thường, số và không để trống");
+							
+						}else if(myRe.test(matkhaumoi) || matkhaumoi.length==0){
+							alert("Mật khẩu mới: Chỉ nhập chữ hoa, thường, số và không để trống");
+						}else if(myRe.test(nhaplaimatkhaumoi) || nhaplaimatkhaumoi.length==0){
+							alert("Nhập lại mật khẩu: Chỉ nhập chữ hoa, thường, số và không để trống");
+						}else {
+							$.ajax({
+								url : "/WebBanHoa/api/ThayDoiMatKhau.htm",
+								type : "GET",
+								data : {
+									matkhau : matkhau,
+									matkhaumoi : matkhaumoi,
+									nhaplaimatkhaumoi : nhaplaimatkhaumoi
+								},
 
+								success : function(value) {
+									if (value == 1) {
+										alert("Sai mật khẩu")
+									} else if (value == 2) {
+										alert("Mật khẩu xác nhận không trùng khớp")
+									} else  if (value == 3) {
+										alert("Thay đổi mật khẩu thành công");
+										duongDanHienTai = window.location.href;
+										duongDan = duongDanHienTai.replace(
+												"/userthaydoimatkhau.htm", "/user.htm");
+										window.location = duongDan;
+									} 
+								}
+							})
+						}
+						
+						
+					});
 		})

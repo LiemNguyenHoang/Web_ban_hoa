@@ -70,29 +70,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<c:when test="${user != null}">
 				<div class="left-content">
 					<div>
-						<form id="form-sanpham" action="userthongtin.htm" method="post">
-					
-							<label for="tendangnhap">Tên đăng nhập</label> </br> 
-							<input type="text" name = "tendangnhap" id="tendangnhap" class="form-control" value="${tendangnhapuserdashboard}"> 
-							
+						<form id="form-sanpham" action="">
 							<label for="matkhau">Mật khẩu</label> </br> 
-							<input type="text" name = "matkhau" id="matkhau" class="form-control" value="${matkhauuserdashboard}"> 
+							<input type="password" name = "matkhau" id="matkhau" class="form-control" value="${matkhauuserdashboard}"> 
 							
-							<label for="nhaplaimatkhau">Nhập lại mật khẩu</label> </br> 
-							<input type="text" name = "nhaplaimatkhau" id="nhaplaimatkhau" class="form-control" value="${nhaplaimatkhauuserdashboard}"> 
 							
-							<label for="hoten">Họ tên</label> </br> 
-							<input type="text" name = "hoten" id="hoten" class="form-control" value="${hotenuserdashboard}"> 
-	
-							<label for="sodienthoai">Số điện thoại</label> </br> 
-							<input type="text" name="sodienthoai" id="sodienthoai" class="form-control" value="${sodienthoaiuserdashboard}"> 
+							<label for="matkhaumoi">Mật khẩu mới</label> </br> 
+							<input type="password" name = "matkhau" id="matkhaumoi" class="form-control" value="${matkhauuserdashboard}"> 
 							
-							<label for="diachi">Địa chỉ</label> </br>			
-							<textarea name="diachi" id="diachi" class="form-control" rows="2">${diachiuserdashboard}</textarea>
+							<label for="nhaplaimatkhaumoi">Nhập lại mật khẩu mới</label> </br> 
+							<input type="password" name = "nhaplaimatkhau" id="nhaplaimatkhaumoi" class="form-control" value="${nhaplaimatkhauuserdashboard}"> 
 							
-							<button class="btn btn-info">Cập nhật</button>
+							
+							
 							
 						</form>
+						<button id="btn-thaydoimatkhau"class="btn btn-info">Thay đổi mật khẩu</button>
 					</div>
 				</div>
 			</c:when>
@@ -277,6 +270,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				});
 	</script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

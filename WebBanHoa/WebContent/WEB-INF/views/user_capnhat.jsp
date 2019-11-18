@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -72,16 +73,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div>
 						<form id="form-sanpham" action="usercapnhat.htm" method="post">
 					
-							<label for="tendangnhap">Tên đăng nhập</label> </br> 
+							<label for="tendangnhap">Tên đăng nhập</label><span style="color:red !important">${tenDangNhap}</span> 
 							<input type="text" name = "tendangnhap" id="tendangnhap" class="form-control" value="${tendangnhapuserdashboard}"> 
 														
-							<label for="hoten">Họ tên</label> </br> 
+							<label for="hoten">Họ tên</label>  <span style="color:red !important">${hoTen}</span> 
 							<input type="text" name = "hoten" id="hoten" class="form-control" value="${hotenuserdashboard}"> 
 	
-							<label for="sodienthoai">Số điện thoại</label> </br> 
+							<label for="sodienthoai">Số điện thoại</label> <span style="color:red !important">${soDienThoai}</span> 
 							<input type="text" name="sodienthoai" id="sodienthoai" class="form-control" value="${sodienthoaiuserdashboard}"> 
 							
-							<label for="diachi">Địa chỉ</label> </br>			
+							<label for="diachi">Địa chỉ</label>  <span style="color:red !important">${diaChi}</span> 
 							<textarea name="diachi" id="diachi" class="form-control" rows="2">${diachiuserdashboard}</textarea>
 							
 							<button class="btn btn-info">Cập nhật</button>
@@ -270,6 +271,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				});
 	</script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

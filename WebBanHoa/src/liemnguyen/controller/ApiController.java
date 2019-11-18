@@ -31,6 +31,7 @@ import liemnguyen.entity.DonHang;
 import liemnguyen.entity.GioHangSP;
 import liemnguyen.entity.LoaiSanPham;
 import liemnguyen.entity.SanPham;
+import liemnguyen.entity.User;
 import liemnguyen.service.DonHangService;
 import liemnguyen.service.LoaiSanPhamService;
 import liemnguyen.service.SanPhamService;
@@ -257,35 +258,31 @@ public class ApiController {
 
 
 		}
-//	@RequestMapping(value = "LaySanPhamTheoMa", method = RequestMethod.POST,produces="application/json; charset=utf-8")
-	@RequestMapping(value = "LaySanPhamTheoMa",method = RequestMethod.POST)
-	@ResponseBody
-	public String laySanPham(@RequestParam("idSanPham") int idSanPham) {
 
-		SanPham sanPham = sanPhamService.laySanPham(idSanPham);
-		
-		
-		String json ="";
-		json+="ten:"+sanPham.getTenSanPham();
-		json+=" ,maloai:"+sanPham.getLoaiSanPham().getId();
-		json+=",gia:"+sanPham.getGia();
-		json+=",mota:"+sanPham.getMoTa();
-		
-		// Start:
-		LoaiSanPham loaiSanPham = new LoaiSanPham(12, "Khai trương hồng phát");
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonajax="";
-	
-			try {
-				jsonajax= mapper.writeValueAsString(loaiSanPham);
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				System.out.println(e.getMessage());
-			}
-		
-		// End
-		
-		return json;
+	@RequestMapping(value = "ThayDoiMatKhau", method = RequestMethod.GET)
+	@ResponseBody
+	public String ThayDoiMatKhau(
+			@RequestParam("matkhau") String matKhau,
+			@RequestParam("matkhaumoi") String matKhauMoi,
+			@RequestParam("nhaplaimatkhaumoi") String nhapLaiMatKhauMoi, 
+			ModelMap modelMap,
+			HttpSession httpSession) {
+		/*
+		 * 1. Sai mật khẩu
+		 * 2. Không trùng mật khẩu mới
+		 * 3. Thay đổi mật khẩu thành công
+		 * 
+		 */
+		User user = userService.layUser(httpSession.getAttribute("user_name").toString());
+		if(!user.getMatKhau().trim().equals(matKhau)){
+			return "1";	
+		}
+		if(!matKhauMoi.equals(nhapLaiMatKhauMoi)){
+			return "2";
+		}
+		user.setMatKhau(nhapLaiMatKhauMoi);
+		userService.capNhatUser(user);
+		return "3";
 	}
 
 }
