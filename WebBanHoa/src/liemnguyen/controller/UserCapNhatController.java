@@ -99,6 +99,7 @@ public class UserCapNhatController {
 						user.setDiaChi(diaChi);
 						
 						userService.capNhatUser(user);
+						return "user_capnhatthanhcong";
 					}
 				}
 				

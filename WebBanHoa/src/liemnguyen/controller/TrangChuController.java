@@ -68,7 +68,7 @@ public class TrangChuController {
 		}else{
 			model.addAttribute("soluonggh",0);
 		}
-		List<SanPham> listSanPhams =  sanPhamService.layDanhSachSanPham(0);
+		List<SanPham> listSanPhams =  sanPhamService.layDanhSachSanPhamMoiNhat();
 		model.addAttribute("listSanPham",listSanPhams);
 
 		

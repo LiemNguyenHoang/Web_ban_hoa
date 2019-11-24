@@ -70,18 +70,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<c:when test="${user != null}">
 				<div class="left-content">
 					<div>
-						<span>Có User</span>
-					</div>
-				</div>
-			</c:when>
-			<c:when test="${user == null}">
-				<div class="left-content">
-					<div>
+						<div>
 						<span>Thêm thành công</span>
 					</div>
 					<div>
 						<a href = "dashboard.htm">Trở về dashboard</a>
 					</div>
+					</div>
+				</div>
+			</c:when>
+			<c:when test="${user == null}">
+				<div class="left-content">
+					<span>Không có User</span>
 				</div>
 			</c:when>
 		</c:choose>

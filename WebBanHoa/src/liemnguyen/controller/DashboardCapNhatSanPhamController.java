@@ -51,7 +51,10 @@ public class DashboardCapNhatSanPhamController {
 		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
 		model.addAttribute("listSanPham", listSanPham);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = sanPhamService.soLuongSanPham()/5; 
+		if(sanPhamService.soLuongSanPham()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		model.addAttribute("danhmucsp", listLoaiSanPham);
@@ -72,7 +75,10 @@ public class DashboardCapNhatSanPhamController {
 		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
 		model.addAttribute("listSanPham", listSanPham);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = sanPhamService.soLuongSanPham()/5; 
+		if(sanPhamService.soLuongSanPham()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		model.addAttribute("danhmucsp", listLoaiSanPham);
@@ -99,7 +105,10 @@ public class DashboardCapNhatSanPhamController {
 		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
 		model.addAttribute("listSanPham", listSanPham);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = sanPhamService.soLuongSanPham()/5; 
+		if(sanPhamService.soLuongSanPham()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		model.addAttribute("danhmucsp", listLoaiSanPham);
@@ -148,7 +157,10 @@ public class DashboardCapNhatSanPhamController {
 		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.listLoaiSanPham();
 		model.addAttribute("listSanPham", listSanPham);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = sanPhamService.soLuongSanPham()/5; 
+		if(sanPhamService.soLuongSanPham()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		model.addAttribute("danhmucsp", listLoaiSanPham);

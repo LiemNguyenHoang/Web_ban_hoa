@@ -47,7 +47,10 @@ public class DashboardUserController {
 		List<User> listUser = userService.layDanhSachSanPhamLimit(0);
 		model.addAttribute("listUser", listUser);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = userService.soLuongUser()/5; // listSanPham/(số sp mỗi page)
+		if(userService.soLuongUser()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 			
@@ -66,7 +69,10 @@ public class DashboardUserController {
 		List<User> listUser = userService.layDanhSachSanPhamLimit((Integer.parseInt(index)-1)*5);
 		model.addAttribute("listUser", listUser);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = userService.soLuongUser()/5; // listSanPham/(số sp mỗi page)
+		if(userService.soLuongUser()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		
@@ -90,7 +96,10 @@ public class DashboardUserController {
 		List<User> listUser = userService.layDanhSachSanPhamLimit((indexCurrent-1)*5);
 		model.addAttribute("listUser", listUser);
 		
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = userService.soLuongUser()/5; // listSanPham/(số sp mỗi page)
+		if(userService.soLuongUser()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 

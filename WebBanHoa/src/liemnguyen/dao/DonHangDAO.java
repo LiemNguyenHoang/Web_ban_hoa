@@ -176,7 +176,7 @@ public class DonHangDAO implements DonHangImp {
 	public List<DonHang> layDanhSachDonHangLimit(int start) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession(); 
-		String hql = "from DonHang where tinhTrang=false";
+		String hql = "from DonHang  order by idDonHang desc";
 		Query query =  session.createQuery(hql);
 		if(start>=0){
 			query.setFirstResult(start);
@@ -235,6 +235,17 @@ public class DonHangDAO implements DonHangImp {
 		chiTietDonHang.setIdChiTietDonHang(id);
 		session.delete(chiTietDonHang);
 		return false;
+	}
+
+	@Override
+	@Transactional
+	public int soLuongDonHang() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "from DonHang";
+		Query query =  session.createQuery(hql);
+		List<DonHang> listDonHangs = query.list();
+		return listDonHangs.size();
 	}
 	
 

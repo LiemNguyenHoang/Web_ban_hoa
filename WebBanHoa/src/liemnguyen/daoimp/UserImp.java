@@ -11,4 +11,5 @@ public interface UserImp {
 	List<User> layDanhSachSanPhamLimit(int start);
 	User layUser(String idUser);
 	boolean capNhatUser(User user);
+	int soLuongUser();
 }

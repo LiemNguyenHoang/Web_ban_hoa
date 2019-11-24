@@ -15,4 +15,5 @@ public interface DonHangImp {
 	boolean capNhatDonHang(DonHang donHang);
 	boolean xoaDonHangTheoId(int id);
 	boolean xoaChiTietDonHangTheoId(int id);
+	int soLuongDonHang();
 }

@@ -195,5 +195,15 @@ public class UserDAO implements UserImp {
 		}
 	}
 
+	@Override
+	public int soLuongUser() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "from User";
+		Query query =  session.createQuery(hql);
+		List<User> listUser = query.list();
+		return listUser.size();
+	}
+
 
 }

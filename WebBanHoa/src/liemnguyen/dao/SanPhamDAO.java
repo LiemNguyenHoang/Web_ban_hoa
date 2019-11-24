@@ -117,6 +117,24 @@ public class SanPhamDAO implements SanPhamImp {
 			return false;
 		}
 	}
+	@Override
+	public int soLuongSanPham() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "from SanPham";
+		Query query =  session.createQuery(hql);
+		List<SanPham> list = query.list();
+		return list.size();
+	}
+	@Override
+	public List<SanPham> layDanhSachSanPhamMoiNhat() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "from SanPham order by idSanPham desc";
+		Query query =  session.createQuery(hql);
+		List<SanPham> listSanPhams = query.list();
+		return listSanPhams;
+	}
 
 
 

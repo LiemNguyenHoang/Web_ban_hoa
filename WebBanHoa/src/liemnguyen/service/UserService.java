@@ -45,5 +45,11 @@ public class UserService implements UserImp{
 		return userDAO.capNhatUser(user);
 	}
 
+	@Override
+	public int soLuongUser() {
+		// TODO Auto-generated method stub
+		return userDAO.soLuongUser();
+	}
+
 	
 }

@@ -49,7 +49,11 @@ public class DashboardDonHangController {
 		List<DonHang> listDonHangs = donHangService.layDanhSachDonHangLimit(0);
 		model.addAttribute("listDonHang", listDonHangs);
 		
-		int page = 5; // listSanPham/(số sp mỗi page)
+	
+		int page = donHangService.soLuongDonHang()/5; // listSanPham/(số sp mỗi page)
+		if(donHangService.soLuongDonHang()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		return "dashboard_donhang";
@@ -67,7 +71,10 @@ public class DashboardDonHangController {
 		List<DonHang> listDonHangs = donHangService.layDanhSachDonHangLimit((Integer.parseInt(index)-1)*5);
 		model.addAttribute("listDonHang", listDonHangs);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = donHangService.soLuongDonHang()/5; // listSanPham/(số sp mỗi page)
+		if(donHangService.soLuongDonHang()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 //		model.addAttribute("danhmucsp", listLoaiSanPham);
@@ -86,7 +93,10 @@ public class DashboardDonHangController {
 		List<DonHang> listDonHang = donHangService.layDanhSachDonHangLimit((indexCurrent-1)*5);
 		model.addAttribute("listDonHang", listDonHang);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = donHangService.soLuongDonHang()/5; // listSanPham/(số sp mỗi page)
+		if(donHangService.soLuongDonHang()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		DonHang donHang = donHangService.layDonHang(iddonhangsanpham);
@@ -143,7 +153,10 @@ public class DashboardDonHangController {
 		List<DonHang> listDonHang = donHangService.layDanhSachDonHangLimit((indexCurrent-1)*5);
 		model.addAttribute("listDonHang", listDonHang);
 
-		int page = 5; // listSanPham/(số sp mỗi page)
+		int page = donHangService.soLuongDonHang()/5; // listSanPham/(số sp mỗi page)
+		if(donHangService.soLuongDonHang()%5!=0){
+			page++;
+		}
 		model.addAttribute("tongpage", page);
 
 		DonHang donHang = donHangService.layDonHang(iddonhangsanpham);

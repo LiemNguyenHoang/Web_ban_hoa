@@ -51,13 +51,17 @@ public class GioHangController {
 				model.addAttribute("listgiohang", listGioHang);
 			} else {
 				model.addAttribute("soluong", 0);
+				return "giohangtrong";
 			}
 
 		} else {
 			model.addAttribute("soluong", 0);
+			return "giohangtrong";
 		}
 		return "giohang";
 	}
+	
+	
 	
 	public void addModelGioHang(ModelMap model, GioHang gioHangMA ){
 		model.addAttribute("tennguoimuadonhang",gioHangMA.getTenNguoiMua());
@@ -145,6 +149,8 @@ public class GioHangController {
 						httpSession.setAttribute("gio_hang",	null);
 						model.addAttribute("soluong", 0);
 						model.addAttribute("listgiohang", null);
+						
+						return "dathangthanhcong";
 					}
 				}
 				
@@ -154,10 +160,12 @@ public class GioHangController {
 			} else {
 				model.addAttribute("soluong", 0);
 				model.addAttribute("listgiohang", null);
+				return "giohangtrong";
 			}
 		}else {
 			model.addAttribute("soluong", 0);
 			model.addAttribute("listgiohang", null);
+			return "giohangtrong";
 		}
 
 		

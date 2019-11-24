@@ -53,5 +53,11 @@ public class DonHangService implements DonHangImp {
 		return donHangDAO.xoaChiTietDonHangTheoId(id);
 	}
 
+	@Override
+	public int soLuongDonHang() {
+		// TODO Auto-generated method stub
+		return donHangDAO.soLuongDonHang();
+	}
+
 
 }

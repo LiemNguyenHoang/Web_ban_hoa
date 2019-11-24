@@ -86,12 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<table id="table-sanpham" class="table">
 						<thead>
 							<tr>
-								<th>
-									<div class="checkbox">
-										<label> <input id="checkall" type="checkbox" value="">
-										</label>
-									</div>
-								</th>
+								
 								<th>Tên đăng nhập</th>
 								<th>Họ tên</th>
 								<th>Số điện thoại</th>
@@ -103,13 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<tbody>
 							<c:forEach var="user" items="${listUser }">
 								<tr>
-									<td>
-										<div class="checkbox">
-											<label> <input type="checkbox"
-												value="${user.tenDangNhap }">
-											</label>
-										</div>
-									</td>
+									
 									<form action="dashboarduser.htm" method="post">
 										<td><button style="background:white !important;text-transform: none !important;" class="btn btn-light" name="iduserdashboard"  value="${user.tenDangNhap }">${user.tenDangNhap }</button></td>
 									</form>
