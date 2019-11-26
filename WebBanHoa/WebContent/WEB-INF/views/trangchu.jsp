@@ -22,10 +22,6 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
 			<ul id="navbar-center" class="navbar-nav mr-auto ">
 				<li class="nav-item"><a class="nav-link" href="home.htm">TRANG CHỦ</a></li>
 				<li class="nav-item dropdown" >
@@ -96,28 +92,7 @@
 		</div>
 	</div>
 
-	<div id="footer" class="container-fluid">
-		<div class="row">
-			<div class="col-md-4">
-				<span>THÔNG TIN</span> <span>Tự </span>
-			</div>
-			<div class="col-md-4">
-				<span>LIÊN HỆ</span>
-			</div>
-			<div class="col-md-4">
-				<p>
-					<span class="title-footer">GÓP Ý</span>
-				</p>
-				<form action="index.htm">
-					<input class="material-textinput" name="email"
-						style="margin-bottom: 8px" type="text" placeholder="Email" />
-					<textarea class="material-textinput" name="noidung" rows="2"
-						cols="50" placeholder="Nội dung"></textarea>
-					<button class="material-primary-button" style="margin-top: 10px">Gửi</button>
-				</form>
-			</div>
-		</div>
-	</div>
+	
 
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>

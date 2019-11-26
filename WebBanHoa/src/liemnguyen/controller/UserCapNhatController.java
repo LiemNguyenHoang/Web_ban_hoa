@@ -85,7 +85,7 @@ public class UserCapNhatController {
 				}else{
 					model.addAttribute("soDienThoai",null);
 					
-					parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+					parttern = "^[a-zA-Z_,.ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
 				            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
 				            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
 					regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);

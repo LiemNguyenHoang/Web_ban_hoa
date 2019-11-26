@@ -92,7 +92,7 @@ public class DashboardThemSanPhamController {
 				Pattern regex ;
 				Matcher matcher;
 				parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
-			            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+			            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" + 
 			            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
 				regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);
 				matcher = regex.matcher(tenSanPham.trim());
@@ -109,14 +109,7 @@ public class DashboardThemSanPhamController {
 					}else{
 						model.addAttribute("giaSanPham",null);
 						
-						parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
-					            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
-					            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
-						regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);
-						matcher = regex.matcher(moTaSanPham.trim());
-						if(!matcher.find()){
-							model.addAttribute("moTaSanPham"," *Dùng chữ hoa, thường, số");
-						}else{
+						
 							model.addAttribute("moTaSanPham",null);
 							
 							 String path = context.getRealPath("/resource/image/sanpham/"+hinhAnhSanPham.getOriginalFilename());
@@ -136,7 +129,7 @@ public class DashboardThemSanPhamController {
 							 }else{
 								 System.out.println("Thêm thất bại");
 							 }
-						}
+						
 					}
 					
 				}

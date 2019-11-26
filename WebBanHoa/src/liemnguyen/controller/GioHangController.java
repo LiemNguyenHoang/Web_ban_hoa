@@ -31,7 +31,7 @@ public class GioHangController {
 
 	@Autowired
 	DonHangService donHangService;
-	
+
 	@Autowired
 	UserService userService;
 
@@ -60,115 +60,102 @@ public class GioHangController {
 		}
 		return "giohang";
 	}
-	
-	
-	
-	public void addModelGioHang(ModelMap model, GioHang gioHangMA ){
-		model.addAttribute("tennguoimuadonhang",gioHangMA.getTenNguoiMua());
-		model.addAttribute("sdtdonhang",gioHangMA.getSdt());
-		model.addAttribute("diachidonhang",gioHangMA.getDiaChi());
-		model.addAttribute("ghichudonhang",gioHangMA.getGhiChu());
+
+	public void addModelGioHang(ModelMap model, GioHang gioHangMA) {
+		model.addAttribute("tennguoimuadonhang", gioHangMA.getTenNguoiMua());
+		model.addAttribute("sdtdonhang", gioHangMA.getSdt());
+		model.addAttribute("diachidonhang", gioHangMA.getDiaChi());
+		model.addAttribute("ghichudonhang", gioHangMA.getGhiChu());
 	}
 
 	@RequestMapping(value = "/giohang", method = RequestMethod.POST)
-	public String index(@ModelAttribute("giohangMA")GioHang gioHangMA,
-						HttpSession httpSession,
-						ModelMap model,
-						BindingResult errors) {
-		
+	public String index(@ModelAttribute("giohangMA") GioHang gioHangMA, HttpSession httpSession, ModelMap model,
+			BindingResult errors) {
+
 		if (httpSession.getAttribute("user_name") != null) {
 			String user = (String) httpSession.getAttribute("user_name");
 			model.addAttribute("user", user);
 		}
-		
+
 		if (httpSession.getAttribute("gio_hang") != null) {
 			List<GioHangSP> listGioHang = (List<GioHangSP>) httpSession.getAttribute("gio_hang");
 			if (listGioHang.size() != 0) {
 				model.addAttribute("soluong", listGioHang.size());
 				model.addAttribute("listgiohang", listGioHang);
-				
 
-				String parttern ;
-				Pattern regex ;
+				String parttern;
+				Pattern regex;
 				Matcher matcher;
-				if(gioHangMA.getTenNguoiMua()==null||  gioHangMA.getTenNguoiMua().length()==0){
-					errors.rejectValue("tenNguoiMua", "giohang" ,"*Chưa nhập tên");					
-				}else{
-					System.out.println("Pattern tenNguoiMua: "+gioHangMA.getTenNguoiMua());
-//					parttern = "^[a-z|A-Z|\\s]{1,}$";
-					parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
-				            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
-				            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
-					regex = Pattern.compile(parttern,Pattern.UNICODE_CHARACTER_CLASS);
-					matcher = regex.matcher(gioHangMA.getTenNguoiMua());
-					if(!matcher.find()){
-						errors.rejectValue("tenNguoiMua", "giohang" ,"*Dùng chữ hoa, thường");
-						
-					}else{
-						errors.rejectValue("tenNguoiMua", "giohang" ,"");
-					}
+				if (gioHangMA.getTenNguoiMua() == null || gioHangMA.getTenNguoiMua().length() == 0) {
+					errors.rejectValue("tenNguoiMua", "giohang", "*Chưa nhập tên");
 					addModelGioHang(model, gioHangMA);
-				}
-				if(gioHangMA.getSdt()==null|| gioHangMA.getSdt().trim().length()==0){
-					errors.rejectValue("sdt", "giohang" ,"*Chưa nhập số điện thoại");
-					
-				}else{
-					parttern = "^[0-9]{1,11}$";
-					regex = Pattern.compile(parttern);
-					matcher = regex.matcher(gioHangMA.getSdt());
-					if(!matcher.find()){
-						errors.rejectValue("sdt", "giohang" ,"Dùng số");
+				} else {
+					System.out.println("Pattern tenNguoiMua: " + gioHangMA.getTenNguoiMua());
+					// parttern = "^[a-z|A-Z|\\s]{1,}$";
+					parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ"
+							+ "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ"
+							+ "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
+					regex = Pattern.compile(parttern, Pattern.UNICODE_CHARACTER_CLASS);
+					matcher = regex.matcher(gioHangMA.getTenNguoiMua());
+					if (!matcher.find()) {
+						errors.rejectValue("tenNguoiMua", "giohang", "*Dùng chữ hoa, thường");
 						addModelGioHang(model, gioHangMA);
-					}else{
-						errors.rejectValue("sdt", "giohang" ,"");
-					}
-				}
-				
-				if(gioHangMA.getDiaChi()==null|| gioHangMA.getDiaChi().trim().length()==0){
-					errors.rejectValue("diaChi", "giohang" ,"Chưa nhập địa chỉ");
-					
-				}else{
-					parttern = "^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
-				            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
-				            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$";
-					regex = Pattern.compile(parttern);
-					matcher = regex.matcher(gioHangMA.getDiaChi());
-					if(!matcher.find()){
-						errors.rejectValue("diaChi", "giohang" ,"Dùng chữ hoa, thường, số");
-						addModelGioHang(model, gioHangMA);
-					}else {
-						errors.rejectValue("diaChi", "giohang" ,"");
-						GioHang gioHang = new GioHang(listGioHang, gioHangMA.getGhiChu(), gioHangMA.getTenNguoiMua(), gioHangMA.getSdt(), gioHangMA.getDiaChi());
-						
-						User user = new User();
-						if(httpSession.getAttribute("user_name")!= null){
-							user = userService.layUser(httpSession.getAttribute("user_name").toString());
+					} else {
+						errors.rejectValue("tenNguoiMua", "giohang", "");
+						if (gioHangMA.getSdt() == null || gioHangMA.getSdt().trim().length() == 0) {
+							errors.rejectValue("sdt", "giohang", "*Chưa nhập số điện thoại");
+							addModelGioHang(model, gioHangMA);
+						} else {
+							parttern = "^[0-9]{1,11}$";
+							regex = Pattern.compile(parttern);
+							matcher = regex.matcher(gioHangMA.getSdt());
+							if (!matcher.find()) {
+								errors.rejectValue("sdt", "giohang", "Dùng số");
+								addModelGioHang(model, gioHangMA);
+							} else {
+								errors.rejectValue("sdt", "giohang", "");
+								if (gioHangMA.getDiaChi() == null || gioHangMA.getDiaChi().trim().length() == 0) {
+									errors.rejectValue("diaChi", "giohang", "Chưa nhập địa chỉ");
+									addModelGioHang(model, gioHangMA);
+								} else {
+									
+										errors.rejectValue("diaChi", "giohang", "");
+										System.out.println("Thêm đơn hàng OK");
+										GioHang gioHang = new GioHang(listGioHang, gioHangMA.getGhiChu(),
+												gioHangMA.getTenNguoiMua(), gioHangMA.getSdt(), gioHangMA.getDiaChi());
+
+										User user = new User();
+										if (httpSession.getAttribute("user_name") != null) {
+											user = userService.layUser(httpSession.getAttribute("user_name").toString());
+										}
+
+										donHangService.themDonHang(gioHang, user);
+										httpSession.setAttribute("gio_hang", null);
+										model.addAttribute("soluong", 0);
+										model.addAttribute("listgiohang", null);
+
+										return "dathangthanhcong";
+									
+								}
+							}
 						}
+
 						
-						donHangService.themDonHang(gioHang,user);
-						httpSession.setAttribute("gio_hang",	null);
-						model.addAttribute("soluong", 0);
-						model.addAttribute("listgiohang", null);
-						
-						return "dathangthanhcong";
 					}
+
 				}
-				
-				
-			
 
 			} else {
 				model.addAttribute("soluong", 0);
 				model.addAttribute("listgiohang", null);
 				return "giohangtrong";
 			}
-		}else {
+		} else {
 			model.addAttribute("soluong", 0);
 			model.addAttribute("listgiohang", null);
 			return "giohangtrong";
 		}
 
-		
 		return "giohang";
 	}
 

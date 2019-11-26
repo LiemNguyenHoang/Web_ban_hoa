@@ -70,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<c:when test="${user != null}">
 				<div class="left-content">
 					<div>
-						<span>Có User</span>
+						
 					</div>
 				</div>
 			</c:when>

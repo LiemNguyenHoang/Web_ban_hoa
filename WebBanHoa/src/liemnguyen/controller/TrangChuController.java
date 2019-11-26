@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -12,6 +13,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -90,61 +93,60 @@ public class TrangChuController {
 		return "redirect:home.htm";
 	}
 	
-	public void themSanPham(){
-		Session session = factory.getCurrentSession();
-		SanPham sp1 = new SanPham();
-		sp1.setTenSanPham("SP 1");
-
-		String hql1 = "FROM LoaiSanPham"; // User trong hql khác với User1 trong sql
-		Query query1 = session.createQuery(hql1);
-		List<LoaiSanPham> listLoaiSP = query1.list();
+	@RequestMapping(value="quenmatkhau",method=RequestMethod.GET)
+	public String logout1() {
 		
-		sp1.setLoaiSanPham(listLoaiSP.get(0));
-		session.save(sp1);
+		return "quenmatkhau";
 	}
 	
-	public void themLoaiSanPham(){
-		Session session = factory.getCurrentSession();
-		Set<SanPham> sanPhams = new HashSet<>();
-
+	@Autowired
+	JavaMailSender mailer;
+	
+	@RequestMapping(value="quenmatkhau",method=RequestMethod.POST)
+	public String logout2(Model model,
+							@RequestParam("tenDangNhap") String tenDangNhap,
+							@RequestParam("email")String email) {
 		
-		LoaiSanPham loaiSanPham = new LoaiSanPham();
-		loaiSanPham.setTenLoai("Loai SP 1");
-		loaiSanPham.setSanPhams(sanPhams);
-
-
-		session.save(loaiSanPham);
+		String from = email,//"liem.nguyenhoang127@gmail.com",
+				to = "n16dccn083@student.ptithcm.edu.vn",
+				subject="Quên mật khẩu",
+				body="Email: "+email+"\nTên đăng nhập: "+tenDangNhap;
+				
+		try{
+			MimeMessage mail = mailer.createMimeMessage();
+			
+			MimeMessageHelper helper =  new MimeMessageHelper(mail);
+			helper.setFrom(from,from);
+			helper.setTo(to);
+			helper.setReplyTo(from,from);
+			helper.setSubject(subject);
+			helper.setText(body, true);
+			
+			mailer.send(mail);
+			System.out.println("Gửi mail OK");
+			
+		}catch(Exception e){
+			
+		}
 		
+		return "xacnhanthanhcong";
 	}
 	
-	public void themSanPham_LoaiSP(){
-		Session session = factory.getCurrentSession();
-		// Start: thêm SanPham và LoaiSanPham
-		Set<SanPham> sanPhams = new HashSet<>();
-		SanPham sp1 = new SanPham();
-		sp1.setTenSanPham("SP 1");
-		sanPhams.add(sp1);
-		SanPham sp2 = new SanPham();
-		sp2.setTenSanPham("SP 2");
-		sanPhams.add(sp2);
-		SanPham sp3 = new SanPham();
-		sp3.setTenSanPham("SP 3");
-		sanPhams.add(sp3);
-		
-		LoaiSanPham loaiSanPham = new LoaiSanPham();
-		loaiSanPham.setTenLoai("Loai SP 1");
-		loaiSanPham.setSanPhams(sanPhams);
-
-		
-		sp1.setLoaiSanPham(loaiSanPham);
-		sp2.setLoaiSanPham(loaiSanPham);
-		sp3.setLoaiSanPham(loaiSanPham);
-
-		session.save(loaiSanPham);
-		session.save(sp1);
-		session.save(sp2);
-		session.save(sp3);
-		
-		// End
-	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
